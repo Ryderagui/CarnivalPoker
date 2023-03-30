@@ -6,6 +6,11 @@ During the round, the player can use their chips to buy new cards or an entire n
 At the end of the round, the player's best trick is compared to the dealer's best trick and so forth, assigning points for each trick won. 
 After 10 rounds, the game ends and the scores are compared, does the House always win?
 
+Technology:
+Canvas API to display the game board
+Webpack and Babel
+
+
 Features:
 (Bare bones)
 Player has a board of poker cards.
@@ -49,11 +54,11 @@ Some avatar or face or otherwise artistic representation for the dealer on the s
 
 Music and a music mute button. Changing to be more hype in later rounds.
 
-Game design unnecessary adds: 
-Can sell a card for half the buy price. 
-Can have up to 6 tricks. 
-Dealer has some cards face down. 
-Dealer gets random cards too and has an algorithm for how to organize cards.
+Timeline: 
 
-
-
+Thursday- Get Canvas working and re-familiarize myself with how canvas works with image assets.
+Friday- Get Board Class, Card Classes built. Get first the cards on the screen. Begin game logic.
+Monday- Finish all game logic, including handling multiple tricks and Poker hand rankings. Start handling multiple tricks on board. 
+Tuesday- Get multiple tricks onto the board. Add click funtionality let the player move cards from one trick to another. Finalize base game.
+Wednesday- Add Start Page. Add any additional features. 
+Thursday- Deploy
