@@ -14,7 +14,7 @@ context.fillStyle = "#000000";
 context.fillRect(200,450,400,150);
  
 const card = new Image();
-card.src = "images/Cards/Medium/Clubs_1.png";
+card.src = "images/Cards/Medium/Clubs 2.png";
 card.onload = ()=>{
     context.drawImage(card,0,0,55,80);
 }
