@@ -14,7 +14,8 @@ class Card {
         this.selected = false;
         //Might need to know what trick we are inside, for event handling
         this.trick = object.trick;
-        
+        this.pos = [0,0];
+        this.points =[];
     }
     animate(ctx,spot){
         console.log("Trying to draw","Card Animate")
@@ -22,6 +23,23 @@ class Card {
         this.sprite.onload = ()=> {    
             ctx.drawImage(this.sprite,spot[0],spot[1],Card.CARDWIDTH,Card.CARDHEIGHT)
         };
+    }
+    updatePoints(pos){
+        this.pos = pos;
+        this.points =[{
+            x: this.pos[0],
+            y: this.pos[1]
+        },{
+            x: this.pos[0]+55,
+            y: this.pos[1]
+        },{
+            x: this.pos[0]+55,
+            y: this.pos[1]+80
+        },{
+            x: this.pos[0],
+            y: this.pos[1]+80
+        }
+    ];
     }
 }
 

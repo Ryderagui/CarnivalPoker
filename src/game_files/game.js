@@ -24,11 +24,11 @@ class Game {
 
     drawPlayer(){
         let new_card = this.deck.drawCard();
-        this.player.tricks[0].addCard(new_card);     
+        this.player.addCardBoard(new_card);     
     }
     drawDealer(){
         let new_card = this.deck.drawCard();
-        this.dealer.tricks[0].addCard(new_card);
+        this.dealer.addCardBoard(new_card);
     }
 
     nextRound(){
@@ -44,17 +44,19 @@ class Game {
         // Will need refactor to compare for each trick
         // Loop based on whichever board has the most tricks
         // Include auto win if mismatch on trick count
-        let player_value = 0;
-        let dealer_value = 0;
 
-                
-        player_value += this.player.tricks[0].evaluate();
-        dealer_value += this.dealer.tricks[0].evaluate();
-
-        if(player_value>dealer_value){
-            this.player.score += 1;
-        }else{
-            this.dealer.score += 1;
+        let dealer_scores = this.dealer.evaluateBoard();  
+        console.log(dealer_scores,"Dealer Scores")
+        let player_scores = this.player.evaluateBoard();
+        console.log(player_scores,"Player Scores")
+        let min = dealer_scores.length < player_scores.length ? dealer_scores.length : player_scores.length;
+        console.log(min,"min");
+        for(let i = 0;i<min;i++){
+            if(dealer_scores[i]>player_scores[i]){
+                this.dealer.score += 1
+            }else if(dealer_scores[i]<player_scores[i]){
+                this.player.score += 1
+            }
         }
         
     }

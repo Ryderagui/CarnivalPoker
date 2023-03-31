@@ -8,11 +8,26 @@ class Trick {
         this.cards = [];
         this.value = 0;
         this.trait = "";
-        this.color = "#000000";
+        this.color = object.color;
     }
 
-    sort(){
-
+    sortCards(){
+        function sorter(card1,card2){
+            //Return 1 if card 1 > card 2
+            //Return -1 if card 1 < card 2
+            suits = ["Spades","Hearts","Diamond","Clubs"]
+            if(card1.value>card2.value){
+                return 1
+            }else if(card1.value<card2.value){
+                return -1 
+            }else{
+                if(suits.indexOf(card1.suit)<suits.indexOf(card2.suit)){
+                    return 1
+                }else{
+                    return -1 
+                }
+            }
+        }
     }
 
     evaluate() {
@@ -32,11 +47,11 @@ class Trick {
         // Need to refactor this to check if the trick has 5 cards
         if(this.cards.length < 5){
             this.cards.push(card);
+            return true;
         }
         else{
-            
+            return false;
         }
-        return true 
     }
 
     animate(ctx){
