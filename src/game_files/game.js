@@ -6,7 +6,7 @@ class Game {
     static MAX_ROUNDS = 5
     constructor(){
         this.dealer = new Player({pos: [200,0]})
-        this.player = new Player({pos: [200,450]})
+        this.player = new Player({pos: [200,0]})
         this.deck = new Deck();
         this.round = 0;
         this.prep_game();
@@ -31,27 +31,13 @@ class Game {
         this.dealer.tricks[0].addCard(new_card);
     }
 
-    play(){
-
-        while(this.round < Game.MAX_ROUNDS){
+    nextRound(){
         this.round += 1;
-        this.next_round();
-        console.log(this.player.score,"player score");
-        console.log(this.dealer.score,"dealer score");
-        }
-        console.log(this.player.tricks[0].cards.length,"final hand");
-        console.log(this.dealer.tricks[0].cards.length,"final hand");
-        console.log(this.player.score,"Final score");
-        console.log(this.dealer.score,"Final score");
-      
-
-    }
-
-    next_round(){
-        console.log(this.round)
         this.compareBoards();
         this.drawPlayer();
         this.drawDealer();
+        console.log(this.player.score,"player score");
+        console.log(this.dealer.score,"dealer score");
     }
 
     compareBoards(){
@@ -78,7 +64,7 @@ class Game {
     }
 
 }
-const g = new Game();
-g.play();
+// const g = new Game();
+// g.play();
 
 module.exports = Game; 
