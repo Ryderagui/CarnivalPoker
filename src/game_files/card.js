@@ -16,6 +16,7 @@ class Card {
         this.trick = object.trick;
         this.pos = [0,0];
         this.points =[];
+        this.updatePoints();
     }
     animate(ctx,spot){
         console.log("Trying to draw","Card Animate")

@@ -34,9 +34,9 @@ class Player{
         trickArray.push(trick1);
         let trick2 = new Trick({pos: [this.pos[0]+400,this.pos[1]], color: "#FFFF00"});
         trickArray.push(trick2);
-        let trick3 = new Trick({pos: [this.pos[0]+400,this.pos[1]+150], color: "#FF0000"});
+        let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+150], color: "#FF0000"});
         trickArray.push(trick3);
-        let trick4 = new Trick({pos: [this.pos[0],this.pos[1]+150], color: "#0000FF"});
+        let trick4 = new Trick({pos: [this.pos[0]+400,this.pos[1]+150], color: "#0000FF"});
         trickArray.push(trick4);
         this.tricks = trickArray;
     }
