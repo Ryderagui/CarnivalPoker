@@ -5,7 +5,15 @@ class ViewGame {
         this.dealerCtx = ctx1;
         this.playerCtx = ctx2;
         this.setupScreen();
+        this.bindButton();
+
     }
+
+    bindButton(){
+        let button = document.getElementById("nextround");
+        button.addEventListener('click',this.playRound.bind(this));
+    }
+
 
     setupScreen(){
         this.game.dealer.animate(this.dealerCtx);

@@ -11,5 +11,3 @@ const dealerCtx = dealercanvas.getContext("2d");
 const playerCtx = playercanvas.getContext("2d");
 const game = new Game ();
 const view = new ViewGame(game,dealerCtx,playerCtx);
-
-setInterval(view.playRound.bind(view),5000);
