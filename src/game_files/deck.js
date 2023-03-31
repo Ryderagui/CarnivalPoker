@@ -35,8 +35,8 @@ class Deck {
     }
 }
 
-let deck = new Deck();
-console.log(deck.cards.length);
-console.log(deck.drawCard());
-console.log(deck.cards.length);
+// let deck = new Deck();
+// console.log(deck.cards.length);
+// console.log(deck.drawCard());
+// console.log(deck.cards.length);
 module.exports = Deck;

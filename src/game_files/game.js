@@ -1,4 +1,5 @@
-const Player = require("./Player")
+const Player = require("./player")
+const Deck = require("./deck")
 
 class Game {
     static START_HAND = 1
@@ -23,28 +24,32 @@ class Game {
 
     drawPlayer(){
         let new_card = this.deck.drawCard();
-        this.player.tricks[0].addCard()
+        this.player.tricks[0].addCard(new_card);     
     }
     drawDealer(){
         let new_card = this.deck.drawCard();
-        this.player.tricks[0].addCard()
+        this.dealer.tricks[0].addCard(new_card);
     }
 
     play(){
 
-        while(this.rounds < Game.MAX_ROUNDS){
-        this.rounds += 1;
+        while(this.round < Game.MAX_ROUNDS){
+        this.round += 1;
         this.next_round();
         console.log(this.player.score,"player score");
         console.log(this.dealer.score,"dealer score");
         }
+        console.log(this.player.tricks[0].cards.length,"final hand");
+        console.log(this.dealer.tricks[0].cards.length,"final hand");
         console.log(this.player.score,"Final score");
         console.log(this.dealer.score,"Final score");
+      
 
     }
 
     next_round(){
-        this.compareBoards():
+        console.log(this.round)
+        this.compareBoards();
         this.drawPlayer();
         this.drawDealer();
     }
@@ -73,5 +78,7 @@ class Game {
     }
 
 }
+const g = new Game();
+g.play();
 
 module.exports = Game; 

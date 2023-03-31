@@ -37,4 +37,9 @@ class Trick {
     }
 }
 
+// let t = new Trick({pos: [0,0]});
+// t.addCard("A");
+console.log(t,"t");
+
+
 module.exports = Trick; 
