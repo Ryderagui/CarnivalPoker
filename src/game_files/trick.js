@@ -11,7 +11,9 @@ class Trick {
         this.pos = object.pos;
         this.cards = [];
         this.value = 0;
-        this.trait = "";
+        this.values = [];
+        this.trait = "High Card";
+        this.major = 0;
         this.color = object.color;
         this.trickid = object.trickid;
         this.points = [];
@@ -42,6 +44,88 @@ class Trick {
             sum += card.value;
         })
         return sum; 
+    }
+
+    evaluatePoker(){
+        let sorted = Util.sortCards(this.cards);
+        this.cards = sorted;
+        let values = [];
+        this.trait = "High Card";
+        let traitList = ["High Card","One Pair","Two Pair","Three of a Kind",
+        "Straight","Flush","Full House","Four of a Kind","Straight-Flush"];
+        let suits = ["Clubs","Hearts","Diamond","Spades"];
+        let base = 14;
+        for(let i = 0;i<this.cards.length;i++){
+            values.push(this.cards[i].value)
+        }
+        this.values = values;
+        if(this.cards.length === 5){
+            // Check flush
+            let flushCheck = false;
+            let straightCheck = true;
+            for(let i = 0;i<suits.length;i++){
+                let suit = suits[i];
+                if(this.cards.every((card)=>card.suit === suit)){
+                    flushCheck = true;
+                }
+            }
+            // Check straight
+            for(let i = 0;i<(values.length-1);i++){
+                if(values[i] !== values[i+1]+1){
+                    console.log(values,"straigh check");
+                    console.log([values[i],values[i+1]],"straight check");
+                    straightCheck = false;
+                }
+            }
+            if(flushCheck && straightCheck){
+                this.trait = "Straight-Flush";
+            }else if(flushCheck){
+                this.trait = "Flush"
+            }else if(straightCheck){
+                this.trait = "Straight"
+            }
+        }
+        let hash = {};
+        for(let i = 0;i<values.length;i++){
+            if(hash[values[i]] === undefined){
+                hash[values[i]] = 1;
+            }else{
+                hash[values[i]] += 1;
+            }
+        }
+        let pair = false;
+        let trips = false;
+        for(let i = 0;i<values.length;i++){
+             if(hash[values[i]]===4){
+                this.trait = "Four of a Kind";
+                this.major = values[i];
+             }
+             if(hash[values[i]]===2 && pair === false){
+                pair = true;
+                this.trait = "One Pair"
+                this.major = values[i];
+             }else if(hash[values[i]]===2 && pair === true && values[i] !== values[i-1]){
+                this.trait = "Two Pair"
+                this.major = values[i]>this.major ? values[i] : this.major;
+             }else if(hash[values[i]]===3){
+                trips = true;
+                this.trait = "Three of a Kind"
+                this.major = values[i];
+            }
+        }
+        if(trips && pair){
+            this.trait = "Full House"
+        }
+        this.major = this.major || values[0];
+        let rank = traitList.indexOf(this.trait)+1;
+        let tiebreaks = values.filter((num)=> num !== this.major);
+        let majorSum = this.major*(base**rank)*2;
+        let tiebreakSum = 0;
+        for(let i = 1;i<tiebreaks.length+1;i++){
+                tiebreakSum += tiebreaks[i-1]*(base**rank)/(base**i);
+        }
+        this.value = majorSum + tiebreakSum;
+        return this.value;
     }
 
     removeCard(card) {
@@ -88,13 +172,16 @@ class Trick {
         let sorted = Util.sortCards(this.cards);
         this.cards = sorted;
         this.updateCards();
+        this.evaluatePoker();
         ctx.fillStyle = this.color;
         let trickX = this.pos[0];
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,400,150)
+        ctx.fillStyle = "#000000"
+        ctx.font = "20px Arial";
+        ctx.fillText(`${this.values} ${this.value} ${this.trait}`,trickX,trickY+125)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
-            console.log(currentCard,"card to be drawn");
             currentCard.animate(ctx,currentCard.pos);
         }
     }

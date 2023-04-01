@@ -103,10 +103,12 @@ class ViewGame {
                 owner = trick;
                 owner.removeCard(card);
                 owner.updateCards();
+                owner.evaluatePoker();
             }
         })
         trick.addCard(card);
         trick.updateCards();
+        trick.evaluatePoker();
         this.cardSelected = false;
     }
 

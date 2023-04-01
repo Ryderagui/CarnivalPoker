@@ -57,8 +57,8 @@ class Player{
     evaluateBoard(){
         let scores = [];
         for(let i = 0;i <this.tricks.length;i++){
-            let trick = this.tricks[i]
-            let sum = 0;
+            let trick = this.tricks[i];
+            let sum = trick.evaluatePoker();
             for(let j = 0;j < trick.cards.length;j++){
                 sum += trick.cards[j].value;
             }
