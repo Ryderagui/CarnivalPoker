@@ -34,7 +34,7 @@ class Trick {
     ];
     }
 
-    sortCards(){
+    sortCards(array){
         function sorter(card1,card2){
             //Return 1 if card 1 > card 2
             //Return -1 if card 1 < card 2
@@ -51,6 +51,13 @@ class Trick {
                 }
             }
         }
+        let pivot = array[0];
+        if(array.length < 2) return this;
+        let left = this.slice(1).filter((ele) => sorter(ele,pivot) === -1);
+        let right = this.slice(1).filter((ele) => sorter(ele,pivot) === 1);
+        let leftSorted = this.sortCards(left);
+        let rightSorted = this.sortCards(right);
+        return leftSorted.concat([pivot]).concat(rightSorted);
     }
 
     evaluate() {
@@ -71,14 +78,16 @@ class Trick {
         let count = this.cards.length;
         if(count < 5){
             let pos = this.pos 
-            let buffer = 20;
-            pos = [pos[0]+buffer,pos[1]+buffer]
+            let buffer = 35;
+            let xbuffer = 20;
+            pos = [pos[0]+buffer+xbuffer,pos[1]+buffer]
             let xshift = count*Card.CARDWIDTH + count*3;
             pos = [pos[0]+xshift,pos[1]];
             card.pos = pos;
             card.trickid = this.trickid;
             card.updatePoints();
             this.cards.push(card);
+            this.cards = this.sortCards(this.cards);
             return true;
         }
         else{
@@ -91,13 +100,15 @@ class Trick {
         for(let i = 0;i<count;i++){
             let card = this.cards[i];
             let pos = this.pos 
-            let buffer = 20;
-            pos = [pos[0]+buffer,pos[1]+buffer]
+            let buffer = 35;
+            let xbuffer = 20;
+            pos = [pos[0]+buffer+xbuffer,pos[1]+buffer]
             let xshift = i*Card.CARDWIDTH+i*3;
             pos = [pos[0]+xshift,pos[1]];
             card.pos = pos;
             card.updatePoints();
         }
+        this.cards = this.sortCards(this.cards);
     }
 
 

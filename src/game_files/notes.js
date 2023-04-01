@@ -1,8 +1,11 @@
 // Need to extend a Dealer Class off Player and add Dealer Presets 
 
 // Need to add the hand sorting algorithm to trick 
-
 // Need to add Poker hand values evaluation to trick 
+
+// Show what poker hand in text at the bottom of the trick
+// Add Round Count in the Top Right
+// Add Rounds remaining underneath, 20 total  
 
 // Need to add buy new card buttons and gold display
 // Need to add buy new trick buttons and hide unboughten tricks
