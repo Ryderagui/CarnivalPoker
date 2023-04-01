@@ -10,7 +10,7 @@ class Card {
         // Code this in once ready to draw
         this.sprite = new Image();
         this.sprite.src = "images/Cards/Medium/"+this.suit+this.value+".png";
-        console.log(this.sprite.src,"Card Src");
+        // console.log(this.sprite.src,"Card Src");
         this.selected = false;
         //Might need to know what trick we are inside, for event handling
         this.trickid = 0;
@@ -18,7 +18,6 @@ class Card {
         this.points =[];
     }
     animate(ctx,spot){
-        console.log("Trying to draw","Card Animate")
         ctx.drawImage(this.sprite,spot[0],spot[1],Card.CARDWIDTH,Card.CARDHEIGHT)
         this.sprite.onload = ()=> {    
             ctx.drawImage(this.sprite,spot[0],spot[1],Card.CARDWIDTH,Card.CARDHEIGHT)
@@ -30,14 +29,14 @@ class Card {
             x: this.pos[0],
             y: this.pos[1]
         },{
-            x: this.pos[0]+55,
+            x: this.pos[0]+Card.CARDWIDTH,
             y: this.pos[1]
         },{
-            x: this.pos[0]+55,
-            y: this.pos[1]+80
+            x: this.pos[0]+Card.CARDWIDTH,
+            y: this.pos[1]+Card.CARDHEIGHT
         },{
             x: this.pos[0],
-            y: this.pos[1]+80
+            y: this.pos[1]+Card.CARDHEIGHT
         }
     ];
     }

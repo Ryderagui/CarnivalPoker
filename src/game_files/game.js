@@ -2,8 +2,8 @@ const Player = require("./player")
 const Deck = require("./deck")
 
 class Game {
-    static START_HAND = 1
-    static MAX_ROUNDS = 5
+    static START_HAND = 1;
+    static MAX_ROUNDS = 5;
     constructor(){
         this.dealer = new Player({pos: [200,0]})
         this.player = new Player({pos: [200,0]})
@@ -18,8 +18,8 @@ class Game {
         for(let i = 0; i < Game.START_HAND; i++){
             this.drawDealer();
         }
-        console.log(this.player.tricks[0],"starting hand");
-        console.log(this.dealer.tricks[0],"starting hand");
+        // console.log(this.player.tricks[0],"starting hand");
+        // console.log(this.dealer.tricks[0],"starting hand");
     }
 
     drawPlayer(){

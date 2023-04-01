@@ -3,6 +3,8 @@ const Card = require("./card")
 
 
 class Trick {
+    static TRICKWIDTH = 400;
+    static TRICKHEIGHT = 150;
     constructor(object){
         this.pos = object.pos;
         this.cards = [];
@@ -20,14 +22,14 @@ class Trick {
             x: this.pos[0],
             y: this.pos[1]
         },{
-            x: this.pos[0]+55,
+            x: this.pos[0]+Trick.TRICKWIDTH,
             y: this.pos[1]
         },{
-            x: this.pos[0]+55,
-            y: this.pos[1]+80
+            x: this.pos[0]+Trick.TRICKWIDTH,
+            y: this.pos[1]+Trick.TRICKHEIGHT
         },{
             x: this.pos[0],
-            y: this.pos[1]+80
+            y: this.pos[1]+Trick.TRICKHEIGHT
         }
     ];
     }

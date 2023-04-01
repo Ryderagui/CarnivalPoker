@@ -19,14 +19,19 @@ class ViewGame {
         let tricks = this.game.player.tricks;
         let allCards = [];
         let allTricks = [];
-        for(let i = 0;i<tricks.length;i++){
+        // console.log(tricks,"player tricks");
+        for(let i = 0;i < tricks.length;i++){
             let trick = tricks[i];
             allTricks.push(trick);
-            for(let j = 0;j<trick.length;j++){
-                let card = trick[j];
+            // console.log(trick,"a grabbed trick");
+            for(let j = 0; j < trick.cards.length ; j++){
+                let card = trick.cards[j];
+                // console.log(card,"a grabbed card");
                 allCards.push(card);
             }
         }
+        this.allCards = allCards;
+        this.allTricks = allTricks;
     }
     
     tracePath(object,ctx){
@@ -45,27 +50,45 @@ class ViewGame {
 
     bindPlayer(){
         let canvas = document.getElementById("player");
-        console.log(canvas,"canvasgrabbed");
+        // console.log(canvas,"canvasgrabbed");
         canvas.addEventListener('click',this.handleCanvasClick.bind(this))
     }
 
     handleCanvasClick(e) {
         e.preventDefault();
         console.log("Click detected")
+        console.log(this.cardSelected,"Card Selected?")
         let xOffset = 0;
         let yOffset = 450;
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
         console.log([e.clientX,e.clientY],"Event Mouse Click Array")
         console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+        console.log([this.allCards.length],"Card Array Length");
+        console.log([this.allTricks.length],"Trick Array Length");
         // see if a card has been clicked on
-        for(let i =0;i<this.allCards.length;i++){
-            let card = this.allCards[i];
-            tracePath(card,this.playerCtx);
-            if (this.playerCtx.isPointinPath(mouseX,mouseY)){
-                this.cardSelected = true;
-                card.selected = true;
-                alert("Grabbed Card");
+        if(this.cardSelected === false){
+            for(let i =0; i< this.allCards.length;i++){
+                let card = this.allCards[i];
+                console.log(card.pos,"Card Pos");
+                this.tracePath(card,this.playerCtx);
+                if (this.playerCtx.isPointInPath(mouseX,mouseY)){
+                    this.cardSelected = true;
+                    card.selected = true;
+                    console.log(card,"grabbed card");
+                    break;
+                    
+                }
+            }
+        }
+        else if(this.cardSelected === true){
+            for(let i = 0; i < this.allTricks.length;i++){
+                let trick = this.allTricks[i];
+                console.log(trick.pos,"Trick Pos");
+                this.tracePath(trick,this.playerCtx);
+                if (this.playerCtx.isPointInPath(mouseX,mouseY)){
+                    console.log(trick,"grabbed trick");
+                }
             }
         }
     }
@@ -80,6 +103,7 @@ class ViewGame {
         this.game.nextRound();
         this.game.dealer.animate(this.dealerCtx);
         this.game.player.animate(this.playerCtx);
+        this.buildTricksCards();
     }
 
 
