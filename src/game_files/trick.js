@@ -9,6 +9,27 @@ class Trick {
         this.value = 0;
         this.trait = "";
         this.color = object.color;
+        this.trickid = object.trickid;
+        this.points = [];
+        this.updatePoints();
+    }
+
+    updatePoints(pos){
+        this.pos = pos || this.pos;
+        this.points =[{
+            x: this.pos[0],
+            y: this.pos[1]
+        },{
+            x: this.pos[0]+55,
+            y: this.pos[1]
+        },{
+            x: this.pos[0]+55,
+            y: this.pos[1]+80
+        },{
+            x: this.pos[0],
+            y: this.pos[1]+80
+        }
+    ];
     }
 
     sortCards(){
@@ -45,7 +66,16 @@ class Trick {
 
     addCard(card){
         // Need to refactor this to check if the trick has 5 cards
-        if(this.cards.length < 5){
+        let count = this.cards.length;
+        if(count < 5){
+            let pos = this.pos 
+            let buffer = 20;
+            pos = [pos[0]+buffer,pos[1]+buffer]
+            let xshift = count*Card.CARDWIDTH;
+            pos = [pos[0]+xshift,pos[1]];
+            card.pos = pos;
+            card.trickid = this.trickid;
+            card.updatePoints();
             this.cards.push(card);
             return true;
         }
@@ -59,13 +89,9 @@ class Trick {
         let trickX = this.pos[0];
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,400,150)
-        let buffer = 5;
-        let cardX = trickX + buffer;
-        let cardY = trickY + buffer;
         for(let i = 0;i<this.cards.length;i++){
-            let spot = [cardX,cardY];
-            this.cards[i].animate(ctx,spot);
-            cardX += Card.CARDWIDTH;
+            let currentCard = this.cards[i];
+            currentCard.animate(ctx,currentCard.pos);
         }
     }
 }

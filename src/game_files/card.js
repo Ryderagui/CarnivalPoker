@@ -13,10 +13,9 @@ class Card {
         console.log(this.sprite.src,"Card Src");
         this.selected = false;
         //Might need to know what trick we are inside, for event handling
-        this.trick = object.trick;
+        this.trickid = 0;
         this.pos = [0,0];
         this.points =[];
-        this.updatePoints();
     }
     animate(ctx,spot){
         console.log("Trying to draw","Card Animate")
@@ -26,7 +25,7 @@ class Card {
         };
     }
     updatePoints(pos){
-        this.pos = pos;
+        this.pos = pos || this.pos;
         this.points =[{
             x: this.pos[0],
             y: this.pos[1]
