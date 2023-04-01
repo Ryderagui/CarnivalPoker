@@ -73,7 +73,7 @@ class ViewGame {
                 console.log(card.pos,"Card Pos");
                 this.tracePath(card,this.playerCtx);
                 if (this.playerCtx.isPointInPath(mouseX,mouseY)){
-                    this.cardSelected = true;
+                    this.cardSelected = card;
                     card.selected = true;
                     console.log(card,"grabbed card");
                     break;
@@ -81,16 +81,33 @@ class ViewGame {
                 }
             }
         }
-        else if(this.cardSelected === true){
+        else if(this.cardSelected){
             for(let i = 0; i < this.allTricks.length;i++){
                 let trick = this.allTricks[i];
                 console.log(trick.pos,"Trick Pos");
                 this.tracePath(trick,this.playerCtx);
                 if (this.playerCtx.isPointInPath(mouseX,mouseY)){
                     console.log(trick,"grabbed trick");
+                    this.moveCard(this.cardSelected,trick);
+                    this.game.player.animate(this.playerCtx);
                 }
             }
         }
+    }
+
+    moveCard(card,trick){
+        let ownerid = card.trickid;
+        let owner;
+        this.allTricks.forEach((trick) =>{
+            if(trick.trickid === ownerid){
+                owner = trick;
+                owner.removeCard(card);
+                owner.updateCards();
+            }
+        })
+        trick.addCard(card);
+        trick.updateCards();
+        this.cardSelected = false;
     }
 
 

@@ -86,6 +86,21 @@ class Trick {
         }
     }
 
+    updateCards(){
+        let count = this.cards.length;
+        for(let i = 0;i<count;i++){
+            let card = this.cards[i];
+            let pos = this.pos 
+            let buffer = 20;
+            pos = [pos[0]+buffer,pos[1]+buffer]
+            let xshift = i*Card.CARDWIDTH;
+            pos = [pos[0]+xshift,pos[1]];
+            card.pos = pos;
+            card.updatePoints();
+        }
+    }
+
+
     animate(ctx){
         ctx.fillStyle = this.color;
         let trickX = this.pos[0];
