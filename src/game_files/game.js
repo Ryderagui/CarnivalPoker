@@ -1,9 +1,10 @@
 const Player = require("./player")
 const Deck = require("./deck")
+const Util = require("./util")
 
 class Game {
     static START_HAND = 1;
-    static MAX_ROUNDS = 5;
+    static MAXROUNDS = 20;
     constructor(){
         this.dealer = new Player({pos: [200,0], name: "Dealer", color:"#800080"})
         this.player = new Player({pos: [200,0], name: "Player", color:"#FFA500"})

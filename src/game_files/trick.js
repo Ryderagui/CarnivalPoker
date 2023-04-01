@@ -1,10 +1,12 @@
 const Player = require("./player")
 const Card = require("./card")
-
+const Util = require("./util")
 
 class Trick {
-    static TRICKWIDTH = 400;
-    static TRICKHEIGHT = 150;
+    static WIDTH = 400;
+    static HEIGHT = 150;
+    static YBUFFER = 20;
+    static XBUFFER = 55;
     constructor(object){
         this.pos = object.pos;
         this.cards = [];
@@ -22,42 +24,16 @@ class Trick {
             x: this.pos[0],
             y: this.pos[1]
         },{
-            x: this.pos[0]+Trick.TRICKWIDTH,
+            x: this.pos[0]+Trick.WIDTH,
             y: this.pos[1]
         },{
-            x: this.pos[0]+Trick.TRICKWIDTH,
-            y: this.pos[1]+Trick.TRICKHEIGHT
+            x: this.pos[0]+Trick.WIDTH,
+            y: this.pos[1]+Trick.HEIGHT
         },{
             x: this.pos[0],
-            y: this.pos[1]+Trick.TRICKHEIGHT
+            y: this.pos[1]+Trick.HEIGHT
         }
     ];
-    }
-
-    sortCards(array){
-        function sorter(card1,card2){
-            //Return 1 if card 1 > card 2
-            //Return -1 if card 1 < card 2
-            suits = ["Spades","Hearts","Diamond","Clubs"]
-            if(card1.value>card2.value){
-                return 1
-            }else if(card1.value<card2.value){
-                return -1 
-            }else{
-                if(suits.indexOf(card1.suit)<suits.indexOf(card2.suit)){
-                    return 1
-                }else{
-                    return -1 
-                }
-            }
-        }
-        let pivot = array[0];
-        if(array.length < 2) return this;
-        let left = this.slice(1).filter((ele) => sorter(ele,pivot) === -1);
-        let right = this.slice(1).filter((ele) => sorter(ele,pivot) === 1);
-        let leftSorted = this.sortCards(left);
-        let rightSorted = this.sortCards(right);
-        return leftSorted.concat([pivot]).concat(rightSorted);
     }
 
     evaluate() {
@@ -87,7 +63,6 @@ class Trick {
             card.trickid = this.trickid;
             card.updatePoints();
             this.cards.push(card);
-            this.cards = this.sortCards(this.cards);
             return true;
         }
         else{
@@ -100,25 +75,26 @@ class Trick {
         for(let i = 0;i<count;i++){
             let card = this.cards[i];
             let pos = this.pos 
-            let buffer = 35;
-            let xbuffer = 20;
-            pos = [pos[0]+buffer+xbuffer,pos[1]+buffer]
+            pos = [pos[0]+Trick.XBUFFER,pos[1]+Trick.YBUFFER]
             let xshift = i*Card.CARDWIDTH+i*3;
             pos = [pos[0]+xshift,pos[1]];
             card.pos = pos;
             card.updatePoints();
         }
-        this.cards = this.sortCards(this.cards);
     }
 
 
     animate(ctx){
+        let sorted = Util.sortCards(this.cards);
+        this.cards = sorted;
+        this.updateCards();
         ctx.fillStyle = this.color;
         let trickX = this.pos[0];
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,400,150)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
+            console.log(currentCard,"card to be drawn");
             currentCard.animate(ctx,currentCard.pos);
         }
     }

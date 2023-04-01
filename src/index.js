@@ -11,3 +11,7 @@ const dealerCtx = dealercanvas.getContext("2d");
 const playerCtx = playercanvas.getContext("2d");
 const game = new Game ();
 const view = new ViewGame(game,dealerCtx,playerCtx);
+
+
+window.game = game;
+window.view = view;

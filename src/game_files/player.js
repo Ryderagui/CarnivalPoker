@@ -41,7 +41,7 @@ class Player{
         this.tricks = trickArray;
     }
     animate(ctx){
-        ctx.clearRect(0,0,Player.DIM_X,Player.DIM_Y)
+        ctx.clearRect(0,0,Player.DIM_X+400,Player.DIM_Y)
         ctx.fillStyle = this.color;
         ctx.fillRect(this.pos[0],this.pos[1],Player.DIM_X,Player.DIM_Y)
         this.tricks.forEach((trick)=>{
@@ -51,6 +51,7 @@ class Player{
         ctx.fillStyle = this.color;
         ctx.fillText(`${this.name}`,40,100);
         ctx.fillText(`${this.score}`,90,150);
+        
     }
 
     evaluateBoard(){

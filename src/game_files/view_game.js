@@ -120,6 +120,13 @@ class ViewGame {
         this.game.nextRound();
         this.game.dealer.animate(this.dealerCtx);
         this.game.player.animate(this.playerCtx);
+        this.dealerCtx.font = "40px Arial";
+        this.dealerCtx.fillStyle = "black";
+        this.dealerCtx.fillText(`Round ${this.game.round}`,1010,100);
+        this.dealerCtx.font = "20px Arial";
+        let remRounds = 20-this.game.round;
+        this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
+        this.dealerCtx.fillText(`${remRounds}`,1090,190);
         this.buildTricksCards();
     }
 
