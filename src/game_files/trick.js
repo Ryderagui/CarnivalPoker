@@ -73,7 +73,7 @@ class Trick {
             let pos = this.pos 
             let buffer = 20;
             pos = [pos[0]+buffer,pos[1]+buffer]
-            let xshift = count*Card.CARDWIDTH;
+            let xshift = count*Card.CARDWIDTH + count*3;
             pos = [pos[0]+xshift,pos[1]];
             card.pos = pos;
             card.trickid = this.trickid;
@@ -93,7 +93,7 @@ class Trick {
             let pos = this.pos 
             let buffer = 20;
             pos = [pos[0]+buffer,pos[1]+buffer]
-            let xshift = i*Card.CARDWIDTH;
+            let xshift = i*Card.CARDWIDTH+i*3;
             pos = [pos[0]+xshift,pos[1]];
             card.pos = pos;
             card.updatePoints();

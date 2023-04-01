@@ -6,10 +6,10 @@ class Player{
     constructor(object){
   
         this.pos = object.pos;
-        
+        this.name = object.name;
         this.score = 0;
         this.gold = 0;
-        this.color = "#00FF00";
+        this.color = object.color;
         //Probably want an array of trick pos.
         //Probably want to prefill each board with 4 tricks, 3 of which are empty.
         this.tricks = [];
@@ -41,11 +41,16 @@ class Player{
         this.tricks = trickArray;
     }
     animate(ctx){
+        ctx.clearRect(0,0,Player.DIM_X,Player.DIM_Y)
         ctx.fillStyle = this.color;
         ctx.fillRect(this.pos[0],this.pos[1],Player.DIM_X,Player.DIM_Y)
         this.tricks.forEach((trick)=>{
             trick.animate(ctx);
         })
+        ctx.font = "50px Arial";
+        ctx.fillStyle = this.color;
+        ctx.fillText(`${this.name}`,40,100);
+        ctx.fillText(`${this.score}`,90,150);
     }
 
     evaluateBoard(){
