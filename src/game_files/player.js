@@ -51,7 +51,7 @@ class Player{
         ctx.fillStyle = this.color;
         ctx.fillText(`${this.name}`,40,100);
         ctx.fillText(`${this.score}`,90,150);
-        
+        this.animateGold(ctx);
     }
 
     evaluateBoard(){
@@ -66,6 +66,36 @@ class Player{
         }
         return scores.sort();
     }
+
+    animateGold(ctx){
+        // Might move this to the game class
+        if(this.name ==="Player"){
+        ctx.font = "40px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText(`Gold ${this.gold}`,1030,60);
+        const cardback = new Image();
+        cardback.src = "images/Cards/Medium/BackRed1.png"
+        ctx.drawImage(cardback,1020,200,55,80);
+        /// Five in a row for the new hand
+        ctx.drawImage(cardback,1020,100,55,80);
+        ctx.drawImage(cardback,1026,100,55,80);
+        ctx.drawImage(cardback,1032,100,55,80);
+        ctx.drawImage(cardback,1038,100,55,80);
+        ctx.drawImage(cardback,1044,100,55,80);
+        //This is a box 1020 to 1100 or 80 by 80
+        //The points are 1020
+        cardback.onload = ()=> {
+            ctx.fillText(`Gold ${this.gold}`,1030,60);
+            ctx.drawImage(cardback,1020,200,55,80);
+            ctx.drawImage(cardback,1020,100,55,80);
+            ctx.drawImage(cardback,1026,100,55,80);
+            ctx.drawImage(cardback,1032,100,55,80);
+            ctx.drawImage(cardback,1038,100,55,80);
+            ctx.drawImage(cardback,1044,100,55,80);
+        }
+        
+        
+    }}
 }
 
 module.exports = Player;

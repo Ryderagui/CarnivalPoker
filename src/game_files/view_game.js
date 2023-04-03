@@ -11,7 +11,6 @@ class ViewGame {
         this.buildTricksCards();
         this.bindPlayer();
         this.cardSelected = false;
-        this.animateRounds();
     }
 
     buildTricksCards(){
@@ -119,9 +118,11 @@ class ViewGame {
     setupScreen(){
         this.game.dealer.animate(this.dealerCtx);
         this.game.player.animate(this.playerCtx);
+        this.animateRounds();
     }
 
     animateRounds(){
+        // Eventually move this to the dealer class
         this.dealerCtx.font = "40px Arial";
         this.dealerCtx.fillStyle = "black";
         this.dealerCtx.onload = ()=> {
