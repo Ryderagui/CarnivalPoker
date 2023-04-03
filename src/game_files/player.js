@@ -32,7 +32,7 @@ class Player{
         let tempPos = this.pos;
         let trick1 = new Trick({pos: this.pos, trickid: 1});
         trickArray.push(trick1);
-        let trick2 = new Trick({pos: [this.pos[0]+400,this.pos[1]], color: "#FFFF00", trickid: 2});
+        let trick2 = new Trick({pos: [this.pos[0]+400,this.pos[1]], color: "#00FF00", trickid: 2});
         trickArray.push(trick2);
         let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+150], color: "#FF0000", trickid: 3});
         trickArray.push(trick3);
@@ -65,11 +65,6 @@ class Player{
             scores.push(sum);
         }
         return scores.sort();
-    }
-
-    
-    makeDealerSet (){
-        //This makes the dealer array
     }
 }
 

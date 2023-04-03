@@ -1,11 +1,20 @@
-// Need to extend a Dealer Class off Player and add Dealer Presets 
+//Debugging list:
+//The scoring math for handrankings
 
-// Need to add the hand sorting algorithm to trick 
-// Need to add Poker hand values evaluation to trick 
+//Error Handeling:
+//Add error catching to moving cards into a 5 card hand
+//Maybe we add a hand area
 
-// Show what poker hand in text at the bottom of the trick
-// Add Round Count in the Top Right
-// Add Rounds remaining underneath, 20 total  
+//Skipped Featers:
+// Dealer Class and preset hands: Skipped due to te
+
+// Monday
+// Need to add selected card highlighting
+// Add a thin black boarder around each card 1-2 px wide, then change the color when selected. 
+// Add Add Card Button and Add new Trick Button
+// Implement Gold per Round, Current Gold Display, Gold deduction functionality
+// 
+
 
 // Need to add buy new card buttons and gold display
 // Need to add buy new trick buttons and hide unboughten tricks

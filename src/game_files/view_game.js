@@ -11,6 +11,7 @@ class ViewGame {
         this.buildTricksCards();
         this.bindPlayer();
         this.cardSelected = false;
+        this.animateRounds();
     }
 
     buildTricksCards(){
@@ -62,20 +63,21 @@ class ViewGame {
         let yOffset = 450;
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
-        console.log([e.clientX,e.clientY],"Event Mouse Click Array")
-        console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
-        console.log([this.allCards.length],"Card Array Length");
-        console.log([this.allTricks.length],"Trick Array Length");
+        // console.log([e.clientX,e.clientY],"Event Mouse Click Array")
+        // console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+        // console.log([this.allCards.length],"Card Array Length");
+        // console.log([this.allTricks.length],"Trick Array Length");
         // see if a card has been clicked on
         if(this.cardSelected === false){
             for(let i =0; i< this.allCards.length;i++){
                 let card = this.allCards[i];
-                console.log(card.pos,"Card Pos");
+                // console.log(card.pos,"Card Pos");
                 this.tracePath(card,this.playerCtx);
                 if (this.playerCtx.isPointInPath(mouseX,mouseY)){
                     this.cardSelected = card;
                     card.selected = true;
                     console.log(card,"grabbed card");
+                    this.game.player.animate(this.playerCtx);
                     break;
                     
                 }
@@ -109,6 +111,7 @@ class ViewGame {
         trick.addCard(card);
         trick.updateCards();
         trick.evaluatePoker();
+        this.cardSelected.selected = false;
         this.cardSelected = false;
     }
 
@@ -118,17 +121,28 @@ class ViewGame {
         this.game.player.animate(this.playerCtx);
     }
 
-    playRound(){
-        this.game.nextRound();
-        this.game.dealer.animate(this.dealerCtx);
-        this.game.player.animate(this.playerCtx);
+    animateRounds(){
         this.dealerCtx.font = "40px Arial";
         this.dealerCtx.fillStyle = "black";
+        this.dealerCtx.onload = ()=> {
         this.dealerCtx.fillText(`Round ${this.game.round}`,1010,100);
         this.dealerCtx.font = "20px Arial";
         let remRounds = 20-this.game.round;
         this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
         this.dealerCtx.fillText(`${remRounds}`,1090,190);
+        }
+        this.dealerCtx.fillText(`Round ${this.game.round}`,1010,100);
+        this.dealerCtx.font = "20px Arial";
+        let remRounds = 20-this.game.round;
+        this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
+        this.dealerCtx.fillText(`${remRounds}`,1090,190);
+    }
+
+    playRound(){
+        this.game.nextRound();
+        this.game.dealer.animate(this.dealerCtx);
+        this.game.player.animate(this.playerCtx);
+        this.animateRounds();
         this.buildTricksCards();
     }
 
