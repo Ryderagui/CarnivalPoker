@@ -3,8 +3,8 @@ const Deck = require("./deck")
 const Util = require("./util")
 
 class Game {
-    static START_HAND = 1;
-    static MAXROUNDS = 20;
+    static START_HAND = 7;
+    static MAXROUNDS = 10;
     constructor(){
         this.dealer = new Player({pos: [200,0], name: "Dealer", color:"#800080"})
         this.player = new Player({pos: [200,0], name: "Player", color:"#FFA500"})
@@ -21,6 +21,10 @@ class Game {
         }
         // console.log(this.player.tricks[0],"starting hand");
         // console.log(this.dealer.tricks[0],"starting hand");
+        // this.dealer.tricks[2].active = false;
+        // this.dealer.tricks[3].active = false;
+        // this.player.tricks[2].active = false;
+        // this.player.tricks[3].active = false;
     }
 
     drawPlayer(){
@@ -34,8 +38,8 @@ class Game {
 
     nextRound(){
         this.round += 1;
+        this.player.gold += 3;
         this.compareBoards();
-        this.drawPlayer();
         this.drawDealer();
         console.log(this.player.score,"player score");
         console.log(this.dealer.score,"dealer score");

@@ -7,6 +7,7 @@ class Trick {
     static HEIGHT = 150;
     static YBUFFER = 20;
     static XBUFFER = 55;
+    static MAXCARDS = 5;
     constructor(object){
         this.pos = object.pos;
         this.cards = [];
@@ -16,6 +17,7 @@ class Trick {
         this.major = 0;
         this.color = object.color;
         this.trickid = object.trickid;
+        this.active = object.active;
         this.points = [];
         this.updatePoints();
     }
@@ -72,8 +74,8 @@ class Trick {
             // Check straight
             for(let i = 0;i<(values.length-1);i++){
                 if(values[i] !== values[i+1]+1){
-                    console.log(values,"straigh check");
-                    console.log([values[i],values[i+1]],"straight check");
+                    // console.log(values,"straigh check");
+                    // console.log([values[i],values[i+1]],"straight check");
                     straightCheck = false;
                 }
             }
@@ -136,7 +138,7 @@ class Trick {
     addCard(card){
         // Need to refactor this to check if the trick has 5 cards
         let count = this.cards.length;
-        if(count < 5){
+        if(count < Trick.MAXCARDS){
             let pos = this.pos 
             let buffer = 35;
             let xbuffer = 20;
@@ -173,7 +175,7 @@ class Trick {
         this.cards = sorted;
         this.updateCards();
         this.evaluatePoker();
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = this.active ? this.color : "#000000";
         let trickX = this.pos[0];
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,400,150)

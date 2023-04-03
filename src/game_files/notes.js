@@ -4,6 +4,7 @@
 //Error Handeling:
 //Add error catching to moving cards into a 5 card hand
 //Maybe we add a hand area
+//Add error handeling for trying to buy cards or tricks with not enough gold
 
 //Skipped Featers:
 // Dealer Class and preset hands: Skipped due to te

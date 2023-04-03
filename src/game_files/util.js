@@ -24,3 +24,20 @@ export function sortCards(array){
         let rightSorted = sortCards(right);
         return leftSorted.concat([pivot]).concat(rightSorted);
     }
+export function createPoints(pos,box){
+        const points =[{
+            x: pos[0],
+            y: pos[1]
+        },{
+            x: pos[0]+box[0],
+            y: pos[1]
+        },{
+            x: pos[0]+box[0],
+            y: pos[1]+box[1]
+        },{
+            x: pos[0],
+            y: pos[1]+box[1]
+        }
+    ];
+    return points;
+    }

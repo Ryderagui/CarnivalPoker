@@ -1,3 +1,5 @@
+const Util = require("./util")
+
 class ViewGame {
 
     constructor(game,ctx1,ctx2){
@@ -7,7 +9,6 @@ class ViewGame {
         this.allCards = [];
         this.allTricks = [];
         this.setupScreen();
-        this.bindButton();
         this.buildTricksCards();
         this.bindPlayer();
         this.cardSelected = false;
@@ -43,11 +44,6 @@ class ViewGame {
         }
     }
 
-    bindButton(){
-        let button = document.getElementById("nextround");
-        button.addEventListener('click',this.playRound.bind(this));
-    }
-
     bindPlayer(){
         let canvas = document.getElementById("player");
         // console.log(canvas,"canvasgrabbed");
@@ -77,6 +73,7 @@ class ViewGame {
                     card.selected = true;
                     console.log(card,"grabbed card");
                     this.game.player.animate(this.playerCtx);
+                    this.buildTricksCards();
                     break;
                     
                 }
@@ -85,15 +82,54 @@ class ViewGame {
         else if(this.cardSelected){
             for(let i = 0; i < this.allTricks.length;i++){
                 let trick = this.allTricks[i];
-                console.log(trick.pos,"Trick Pos");
+                // console.log(trick.pos,"Trick Pos");
                 this.tracePath(trick,this.playerCtx);
                 if (this.playerCtx.isPointInPath(mouseX,mouseY)){
                     console.log(trick,"grabbed trick");
                     this.moveCard(this.cardSelected,trick);
                     this.game.player.animate(this.playerCtx);
+                    this.buildTricksCards();
                 }
             }
         }
+        const newTrickButton = [[1020,100],[80,80]];
+        const newCardButton = [[1020,200],[55,80]];
+        const newTrickButtonPoints = Util.createPoints(newTrickButton[0],newTrickButton[1]);
+        const newCardButtonPoints = Util.createPoints(newCardButton[0],newCardButton[1]);
+        // Eventually need to error handle if there isnt enough gold
+        if(this.game.player.gold >= 6){
+            let points = {points: newTrickButtonPoints}
+            this.tracePath(points,this.playerCtx)
+            if(this.playerCtx.isPointInPath(mouseX,mouseY)){
+                console.log("Clicked on Trick Button");
+                // Activate next trick
+                this.game.player.gold -= 6;
+                this.game.player.animate(this.playerCtx);
+                this.buildTricksCards();
+            }
+        }
+        // Eventually error handle not enough gold
+        if(this.game.player.gold >= 2){
+            let points = {points: newCardButtonPoints}
+            this.tracePath(points,this.playerCtx)
+            if(this.playerCtx.isPointInPath(mouseX,mouseY)){
+                console.log("Clicked on Card Button");
+                this.game.drawPlayer();
+                this.game.player.gold -= 2;
+                this.game.player.animate(this.playerCtx);
+                this.buildTricksCards();
+            }
+        }
+
+        // const newScoreRoundButton = [[1020,220][160,80]];
+        // const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
+        // let points = {points: newScoreRoundButtonPoints}
+        // this.tracePath(points,this.dealerCtx)
+        // if(this.dealerCtx.isPointInPath(mouseX+xOffset,mouseY+yOffset)){
+        //     console.log("Click on Score Round");
+        //     this.playRound();
+        // }
+
     }
 
     moveCard(card,trick){
@@ -107,11 +143,18 @@ class ViewGame {
                 owner.evaluatePoker();
             }
         })
-        trick.addCard(card);
+        if(trick.addCard(card)){
         trick.updateCards();
         trick.evaluatePoker();
         this.cardSelected.selected = false;
         this.cardSelected = false;
+        }else{
+            owner.addCard(card)
+            owner.updateCards();
+            owner.evaluatePoker();
+            this.cardSelected.selected = false;
+            this.cardSelected = false;
+        }
     }
 
 
@@ -128,15 +171,19 @@ class ViewGame {
         this.dealerCtx.onload = ()=> {
         this.dealerCtx.fillText(`Round ${this.game.round}`,1010,100);
         this.dealerCtx.font = "20px Arial";
-        let remRounds = 20-this.game.round;
+        let remRounds = 10-this.game.round;
         this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
         this.dealerCtx.fillText(`${remRounds}`,1090,190);
         }
         this.dealerCtx.fillText(`Round ${this.game.round}`,1010,100);
         this.dealerCtx.font = "20px Arial";
-        let remRounds = 20-this.game.round;
+        let remRounds = 10-this.game.round;
         this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
         this.dealerCtx.fillText(`${remRounds}`,1090,190);
+        this.dealerCtx.fillStyle = "#777777"
+        this.dealerCtx.fillRect(1020,220,160,80)
+        this.dealerCtx.fillStyle = "black";
+        this.dealerCtx.fillText(`Score Round`,1040,270);
     }
 
     playRound(){
