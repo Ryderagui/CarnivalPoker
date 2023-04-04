@@ -1,12 +1,13 @@
 const Player = require("./player")
 const Deck = require("./deck")
 const Util = require("./util")
+const Dealer = require("./dealer")
 
 class Game {
     static START_HAND = 7;
     static MAXROUNDS = 10;
     constructor(){
-        this.dealer = new Player({pos: [200,0], name: "Dealer", color:"#800080"})
+        this.dealer = new Dealer({pos: [200,0], name: "Dealer", color:"#800080"})
         this.player = new Player({pos: [200,0], name: "Player", color:"#FFA500"})
         this.deck = new Deck();
         this.round = 0;
@@ -19,12 +20,12 @@ class Game {
         for(let i = 0; i < Game.START_HAND; i++){
             this.drawDealer();
         }
-        // console.log(this.player.tricks[0],"starting hand");
-        // console.log(this.dealer.tricks[0],"starting hand");
-        // this.dealer.tricks[2].active = false;
-        // this.dealer.tricks[3].active = false;
-        // this.player.tricks[2].active = false;
-        // this.player.tricks[3].active = false;
+        console.log(this.player.tricks[0],"starting hand");
+        console.log(this.dealer.tricks[0],"starting hand");
+        this.dealer.tricks[2].active = false;
+        this.dealer.tricks[3].active = false;
+        this.player.tricks[2].active = false;
+        this.player.tricks[3].active = false;
     }
 
     drawPlayer(){

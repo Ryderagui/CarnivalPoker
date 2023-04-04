@@ -51,6 +51,7 @@ class Trick {
     evaluatePoker(){
         let sorted = Util.sortCards(this.cards);
         this.cards = sorted;
+        this.value = 0;
         let values = [];
         this.trait = "High Card";
         let traitList = ["High Card","One Pair","Two Pair","Three of a Kind",
@@ -182,7 +183,7 @@ class Trick {
         ctx.fillStyle = "#000000"
         ctx.font = "20px Arial";
         //${this.values} ${this.value} 
-        ctx.fillText(`${this.trait}`,trickX+175,trickY+125)
+        ctx.fillText(`${this.value} ${this.trait}`,trickX+175,trickY+125)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
             currentCard.animate(ctx,currentCard.pos);

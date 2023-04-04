@@ -11,6 +11,7 @@ class ViewGame {
         this.setupScreen();
         this.buildTricksCards();
         this.bindPlayer();
+        this.bindDealer();
         this.cardSelected = false;
     }
 
@@ -47,19 +48,44 @@ class ViewGame {
     bindPlayer(){
         let canvas = document.getElementById("player");
         // console.log(canvas,"canvasgrabbed");
-        canvas.addEventListener('click',this.handleCanvasClick.bind(this))
+        canvas.addEventListener('click',this.handlePlayerCanvasClick.bind(this))
     }
-
-    handleCanvasClick(e) {
+    bindDealer(){
+        let canvas = document.getElementById("dealer");
+        // console.log(canvas,"canvasgrabbed");
+        canvas.addEventListener('click',this.handleDealerCanvasClick.bind(this))
+    }
+    handleDealerCanvasClick(e) {
         e.preventDefault();
         console.log("Click detected")
-        console.log(this.cardSelected,"Card Selected?")
+     
         let xOffset = 0;
-        let yOffset = 450;
+        let yOffset = 0;
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
-        // console.log([e.clientX,e.clientY],"Event Mouse Click Array")
-        // console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+        console.log([e.clientX,e.clientY],"Event Mouse Click Array")
+        console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+        const newScoreRoundButton = [[515,345],[160,80]];
+        const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
+        let points = {points: newScoreRoundButtonPoints}
+        this.tracePath(points,this.dealerCtx)
+        if(this.dealerCtx.isPointInPath(mouseX,mouseY)){
+            console.log("Click on Score Round");
+            this.playRound();
+        }
+
+    }
+
+    handlePlayerCanvasClick(e) {
+        e.preventDefault();
+        console.log("Click detected")
+        // console.log(this.cardSelected,"Card Selected?")
+        let xOffset = 0;
+        let yOffset = 500;
+        let mouseX = parseInt(e.clientX - xOffset);
+        let mouseY = parseInt(e.clientY - yOffset);
+        console.log([e.clientX,e.clientY],"Event Mouse Click Array")
+        console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
         // console.log([this.allCards.length],"Card Array Length");
         // console.log([this.allTricks.length],"Trick Array Length");
         // see if a card has been clicked on
@@ -102,7 +128,7 @@ class ViewGame {
             this.tracePath(points,this.playerCtx)
             if(this.playerCtx.isPointInPath(mouseX,mouseY)){
                 console.log("Clicked on Trick Button");
-                // Activate next trick
+                this.game.player.activateNextTrick();
                 this.game.player.gold -= 6;
                 this.game.player.animate(this.playerCtx);
                 this.buildTricksCards();
@@ -121,14 +147,7 @@ class ViewGame {
             }
         }
 
-        // const newScoreRoundButton = [[1020,220][160,80]];
-        // const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
-        // let points = {points: newScoreRoundButtonPoints}
-        // this.tracePath(points,this.dealerCtx)
-        // if(this.dealerCtx.isPointInPath(mouseX+xOffset,mouseY+yOffset)){
-        //     console.log("Click on Score Round");
-        //     this.playRound();
-        // }
+        
 
     }
 
@@ -181,9 +200,10 @@ class ViewGame {
         this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
         this.dealerCtx.fillText(`${remRounds}`,1090,190);
         this.dealerCtx.fillStyle = "#777777"
-        this.dealerCtx.fillRect(1020,220,160,80)
+        this.dealerCtx.fillRect(515,345,160,80)
         this.dealerCtx.fillStyle = "black";
-        this.dealerCtx.fillText(`Score Round`,1040,270);
+        this.dealerCtx.fillText(`Score Round`,535,395);
+        //+20,+50
     }
 
     playRound(){

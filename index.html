@@ -12,10 +12,24 @@
   </head>
 
   <body>
-    <div><h1>Carnival Poker</h1></div>
+    <!-- <div height="200" width="1200"><h1>Carnival Poker</h1></div> -->
+    <div id="game">
     <canvas id="dealer" height="500" width="1200"></canvas>
-    </div>
     <canvas id="player" height="300" width="1200"></canvas>
+    </div>
+    <div id="overlay">
+      <div class="overlay" id="start">
+      <h1>Instructions</h1>
+      <p>You are playing multi-hand poker against the dealer. Each color hand will be ranked against the dealer's matching color.
+        Every round you receive 3 gold to buy new cards or buy a new hand with. The game ends after 10 rounds.
+      </p>
+      <button id="start-button">Start Game</button>
+      </div>
+      <div class="overlay" id="drawcard">
+      </div>
+      <div class="overlay" id="gameover">
+      </div>
+    </div>
   </body>
 
 </html>
