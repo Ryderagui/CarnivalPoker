@@ -2,7 +2,7 @@ const Util = require("./util")
 
 class ViewGame {
 
-    constructor(game,ctx1,ctx2){
+    constructor(game,ctx1,ctx2,pos){
         this.game = game;
         this.dealerCtx = ctx1;
         this.playerCtx = ctx2;
@@ -13,6 +13,7 @@ class ViewGame {
         this.bindPlayer();
         this.bindDealer();
         this.cardSelected = false;
+        this.pos = pos;
     }
 
     buildTricksCards(){
@@ -59,8 +60,8 @@ class ViewGame {
         e.preventDefault();
         console.log("Click detected")
      
-        let xOffset = 0;
-        let yOffset = 0;
+        let xOffset = this.pos[0];
+        let yOffset = this.pos[1];
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
         console.log([e.clientX,e.clientY],"Event Mouse Click Array")
@@ -80,8 +81,8 @@ class ViewGame {
         e.preventDefault();
         console.log("Click detected")
         // console.log(this.cardSelected,"Card Selected?")
-        let xOffset = 0;
-        let yOffset = 500;
+        let xOffset = this.pos[0];
+        let yOffset = 500 + this.pos[1];
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
         console.log([e.clientX,e.clientY],"Event Mouse Click Array")
@@ -212,6 +213,10 @@ class ViewGame {
         this.game.player.animate(this.playerCtx);
         this.animateRounds();
         this.buildTricksCards();
+        const roundscore = document.getElementById("roundscore");
+        const overlay = document.getElementById("overlay");
+        overlay.style.display = "block";
+        roundscore.style.display = "flex";
     }
 
 

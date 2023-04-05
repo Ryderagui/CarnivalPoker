@@ -3,10 +3,10 @@ const Card = require("./card")
 const Util = require("./util")
 
 class Trick {
-    static WIDTH = 400;
-    static HEIGHT = 150;
-    static YBUFFER = 20;
-    static XBUFFER = 55;
+    static WIDTH = 300;
+    static HEIGHT = 120;
+    static YBUFFER = 10;
+    static XBUFFER = 10;
     static MAXCARDS = 5;
     constructor(object){
         this.pos = object.pos;
@@ -52,6 +52,7 @@ class Trick {
         let sorted = Util.sortCards(this.cards);
         this.cards = sorted;
         this.value = 0;
+        this.major = 0;
         let values = [];
         this.trait = "High Card";
         let traitList = ["High Card","One Pair","Two Pair","Three of a Kind",
@@ -122,11 +123,14 @@ class Trick {
         this.major = this.major || values[0];
         let rank = traitList.indexOf(this.trait)+1;
         let tiebreaks = values.filter((num)=> num !== this.major);
+        console.log(this.major,"major");
         let majorSum = this.major*(base**rank)*2;
         let tiebreakSum = 0;
         for(let i = 1;i<tiebreaks.length+1;i++){
                 tiebreakSum += tiebreaks[i-1]*(base**rank)/(base**i);
         }
+        console.log(majorSum,"major sum")
+        console.log(tiebreakSum,"tibreak sum")
         this.value = majorSum + tiebreakSum;
         return this.value;
     }
@@ -141,9 +145,8 @@ class Trick {
         let count = this.cards.length;
         if(count < Trick.MAXCARDS){
             let pos = this.pos 
-            let buffer = 35;
-            let xbuffer = 20;
-            pos = [pos[0]+buffer+xbuffer,pos[1]+buffer]
+
+            pos = [pos[0]+Trick.XBUFFER,pos[1]+Trick.YBUFFER]
             let xshift = count*Card.CARDWIDTH + count*3;
             pos = [pos[0]+xshift,pos[1]];
             card.pos = pos;
@@ -179,11 +182,11 @@ class Trick {
         ctx.fillStyle = this.active ? this.color : "#000000";
         let trickX = this.pos[0];
         let trickY = this.pos[1];
-        ctx.fillRect(trickX,trickY,400,150)
+        ctx.fillRect(trickX,trickY,Trick.WIDTH,Trick.HEIGHT)
         ctx.fillStyle = "#000000"
         ctx.font = "20px Arial";
         //${this.values} ${this.value} 
-        ctx.fillText(`${this.value} ${this.trait}`,trickX+175,trickY+125)
+        ctx.fillText(`${this.trait}`,trickX+175,trickY+125)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
             currentCard.animate(ctx,currentCard.pos);

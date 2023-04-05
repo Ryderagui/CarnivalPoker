@@ -25,7 +25,7 @@ body {
   width: 50vh;
   height: 35vh;
   margin: auto;
-  margin-top: 20vh;
+  margin-top: 10vh;
   background-color: purple;
 }
 
@@ -40,4 +40,68 @@ body {
 
 #overlay button {
   background-color: white;
+}
+
+#game {
+  position: fixed;
+  left: 10%;
+  width: 1400px;
+  height: 900px;
+  background-image: url("/images/CarnivalBackground.png");
+  justify-content: center;
+}
+
+#roundscore {
+  display: none;
+  justify-content: flex-start;
+  height: 800px;
+  width: 800px;
+}
+
+.trick {
+  display: flex;
+  height: 90px;
+  width: 370px;
+  padding: 3px;
+  background-color: orange;
+  justify-content: space-evenly;
+  margin: 5px;
+}
+
+img {
+  padding: 3px;
+}
+
+div ul {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  height: 600px;
+  padding: 3px;
+}
+
+div label {
+  margin: 0px;
+  background-color: orange;
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+}
+
+canvas {
+  margin-left: 100px;
+}
+
+#drawcard {
+  display: none;
+}
+
+#gameover {
+  display: none;
+}
+
+#continuebutton {
+  display: absolute;
 }

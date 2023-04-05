@@ -1,8 +1,8 @@
 const Trick = require("./trick")
 
 class Player{
-    static DIM_X = 800;
-    static DIM_Y = 300;
+    static DIM_X = Trick.WIDTH*2;
+    static DIM_Y = Trick.HEIGHT*2;
     constructor(object){
   
         this.pos = object.pos;
@@ -42,16 +42,16 @@ class Player{
         let tempPos = this.pos;
         let trick1 = new Trick({pos: this.pos, trickid: 1, active: true});
         trickArray.push(trick1);
-        let trick2 = new Trick({pos: [this.pos[0]+400,this.pos[1]], color: "#00FF00", trickid: 2, active: true});
+        let trick2 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]], color: "#00FF00", trickid: 2, active: true});
         trickArray.push(trick2);
-        let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+150], color: "#FF0000", trickid: 3, active: false});
+        let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+Trick.HEIGHT], color: "#FF0000", trickid: 3, active: false});
         trickArray.push(trick3);
-        let trick4 = new Trick({pos: [this.pos[0]+400,this.pos[1]+150], color: "#0000FF", trickid: 4, active: false});
+        let trick4 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]+Trick.HEIGHT], color: "#0000FF", trickid: 4, active: false});
         trickArray.push(trick4);
         this.tricks = trickArray;
     }
     animate(ctx){
-        ctx.clearRect(0,0,Player.DIM_X+400,Player.DIM_Y)
+        ctx.clearRect(0,0,Player.DIM_X+Trick.HEIGHT,Player.DIM_Y)
         ctx.fillStyle = this.color;
         ctx.fillRect(this.pos[0],this.pos[1],Player.DIM_X,Player.DIM_Y)
         this.tricks.forEach((trick)=>{

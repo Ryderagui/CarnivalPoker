@@ -20,8 +20,8 @@ class Game {
         for(let i = 0; i < Game.START_HAND; i++){
             this.drawDealer();
         }
-        console.log(this.player.tricks[0],"starting hand");
-        console.log(this.dealer.tricks[0],"starting hand");
+        // console.log(this.player.tricks[0],"starting hand");
+        // console.log(this.dealer.tricks[0],"starting hand");
         this.dealer.tricks[2].active = false;
         this.dealer.tricks[3].active = false;
         this.player.tricks[2].active = false;
@@ -42,8 +42,8 @@ class Game {
         this.player.gold += 3;
         this.compareBoards();
         this.drawDealer();
-        console.log(this.player.score,"player score");
-        console.log(this.dealer.score,"dealer score");
+        // console.log(this.player.score,"player score");
+        // console.log(this.dealer.score,"dealer score");
     }
 
     compareBoards(){
@@ -56,7 +56,7 @@ class Game {
         let player_scores = this.player.evaluateBoard();
         console.log(player_scores,"Player Scores")
         let min = dealer_scores.length < player_scores.length ? dealer_scores.length : player_scores.length;
-        console.log(min,"min");
+        // console.log(min,"min");
         for(let i = 0;i<min;i++){
             if(dealer_scores[i]>player_scores[i]){
                 this.dealer.score += 1

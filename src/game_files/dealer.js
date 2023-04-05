@@ -24,14 +24,13 @@ class Dealer extends Player{
 
     makeTricks(){
         let trickArray = [];
-        let tempPos = this.pos;
-        let trick1 = new Trick({pos: [this.pos[0],this.pos[1]+150], trickid: 1, active: true});
+        let trick1 = new Trick({pos: [this.pos[0],this.pos[1]+Trick.HEIGHT], trickid: 1, active: true});
         trickArray.push(trick1);
-        let trick2 = new Trick({pos: [this.pos[0]+400,this.pos[1]+150], color: "#00FF00", trickid: 2, active: true});
+        let trick2 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]+Trick.HEIGHT], color: "#00FF00", trickid: 2, active: true});
         trickArray.push(trick2);
         let trick3 = new Trick({pos: this.pos, color: "#FF0000", trickid: 3, active: false});
         trickArray.push(trick3);
-        let trick4 = new Trick({pos: [this.pos[0]+400,this.pos[1]], color: "#0000FF", trickid: 4, active: false});
+        let trick4 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]], color: "#0000FF", trickid: 4, active: false});
         trickArray.push(trick4);
         this.tricks = trickArray;
     }
