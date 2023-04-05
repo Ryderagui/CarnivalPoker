@@ -30,7 +30,6 @@ div.overlay {
   opacity: 1;
   margin: auto;
   margin-top: 10vh;
-  background-color: purple;
 }
 
 #start {
@@ -40,6 +39,7 @@ div.overlay {
   padding-right: 2.5vh;
   height: 35vh;
   text-align: center;
+  background-color: purple;
 }
 
 #overlay button {
@@ -59,7 +59,17 @@ div.overlay {
   display: none;
   justify-content: flex-start;
   height: 600px;
-  width: 875px;
+  width: 900px;
+  background-image: url("/images/BulletinBoard.jpg");
+}
+
+div ul {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  height: 600px;
+  padding: 3px;
+  align-items: center;
 }
 
 .trick {
@@ -76,12 +86,11 @@ img {
   padding: 3px;
 }
 
-div ul {
-  display: flex;
-  flex-direction: column;
-  width: 380px;
-  height: 600px;
-  padding: 3px;
+.score {
+  margin: 30px;
+  height: 40px;
+  font-size: 35px;
+  color: white;
 }
 
 div label {
@@ -110,11 +119,4 @@ canvas {
   display: absolute;
   margin-top: 80px;
   height: 30px;
-}
-
-.score {
-  margin: 30px;
-  font-size: 35px;
-  color: white;
-  text-align: center;
 }

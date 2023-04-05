@@ -176,6 +176,9 @@ class Trick {
 
     animate(ctx){
         if(this.active){
+        const trickobj = document.getElementById(`trick${this.trickid}`)
+        trickobj.style.display = "flex";
+        trickobj.style.backgroundColor = this.color;
         let sorted = Util.sortCards(this.cards);
         this.cards = sorted;
         this.updateCards();
@@ -184,16 +187,23 @@ class Trick {
         let trickX = this.pos[0];
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,Trick.WIDTH,Trick.HEIGHT)
-        ctx.fillStyle = "#000000"
+        ctx.fillStyle = "#FFFFFF"
         ctx.font = "20px Arial";
         //${this.values} ${this.value} 
         ctx.fillText(`${this.trait}`,trickX+115,trickY+115)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
             currentCard.animate(ctx,currentCard.pos);
+            let cardobj = document.getElementById(`${this.trickid}-${i}`)
+            cardobj.src = currentCard.sprite.src
         }
-    }}
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#FFFFFF";
+        ctx.strokeRect(this.pos[0],this.pos[1],Trick.WIDTH,Trick.HEIGHT);
+        }
+    }
 }
+
 
 // let t = new Trick({pos: [0,0]});
 // t.addCard("A");

@@ -16,6 +16,20 @@ class ViewGame {
         this.pos = pos;
     }
 
+    resetCardLinks(){
+        let tricksidx = [1,2,3,4,5,6,7,8]
+        let cardsidx = [0,1,2,3,4]
+
+        for(let i = 1;i<tricksidx.length;i++){
+            for(let j = 0;j<cardsidx.length;j++){
+                let cardobj = document.getElementById(`${i}-${j}`);
+                console.log(`${i}-${j}`,"id")
+                console.log(cardobj,"cardobj")
+                cardobj.src = "./images/transparent.png";
+            }
+        }
+    }
+
     buildTricksCards(){
         // 2D array, first item is the shape array. second item is the card.
         // Loop through player tricks and build each card. 
@@ -209,6 +223,7 @@ class ViewGame {
 
     playRound(){
         this.game.nextRound();
+        this.resetCardLinks();
         this.game.dealer.animate(this.dealerCtx);
         this.game.player.animate(this.playerCtx);
         this.animateRounds();

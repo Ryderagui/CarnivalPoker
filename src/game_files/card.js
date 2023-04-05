@@ -27,7 +27,7 @@ class Card {
         this.sprite.onload = ()=> {   
             ctx.drawImage(this.sprite,spot[0],spot[1],Card.CARDWIDTH,Card.CARDHEIGHT);
             if(this.selected){
-                ctx.lineWidth = 3;;
+                ctx.lineWidth = 3;
                 ctx.strokeStyle = "#FFFF00";
                 ctx.strokeRect(spot[0],spot[1],Card.CARDWIDTH,Card.CARDHEIGHT);
             }

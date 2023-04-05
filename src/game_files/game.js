@@ -26,9 +26,14 @@ class Game {
         this.dealer.tricks[3].active = false;
         this.player.tricks[2].active = false;
         this.player.tricks[3].active = false;
-        d
-
-
+        const trick3 = document.getElementById("trick3");
+        const trick4 = document.getElementById("trick4");
+        const trick7 = document.getElementById("trick7");
+        const trick8 = document.getElementById("trick8");
+        trick3.style.display = "none";
+        trick4.style.display = "none";
+        trick7.style.display = "none";
+        trick8.style.display = "none";
     }
 
     drawPlayer(){
