@@ -3,7 +3,7 @@ const Card = require("./card")
 const Util = require("./util")
 
 class Trick {
-    static WIDTH = 300;
+    static WIDTH = 310;
     static HEIGHT = 120;
     static YBUFFER = 10;
     static XBUFFER = 10;
@@ -175,6 +175,7 @@ class Trick {
 
 
     animate(ctx){
+        if(this.active){
         let sorted = Util.sortCards(this.cards);
         this.cards = sorted;
         this.updateCards();
@@ -186,12 +187,12 @@ class Trick {
         ctx.fillStyle = "#000000"
         ctx.font = "20px Arial";
         //${this.values} ${this.value} 
-        ctx.fillText(`${this.trait}`,trickX+175,trickY+125)
+        ctx.fillText(`${this.trait}`,trickX+115,trickY+115)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
             currentCard.animate(ctx,currentCard.pos);
         }
-    }
+    }}
 }
 
 // let t = new Trick({pos: [0,0]});

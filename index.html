@@ -14,7 +14,7 @@
   <body>
     <!-- <div height="200" width="1200"><h1>Carnival Poker</h1></div> -->
     <div id="game">
-    <h1>Carnival Poker</h1>
+      <h1></h1>
     <canvas id="dealer" height="500" width="1200"></canvas>
     <canvas id="player" height="300" width="1200"></canvas>
     </div>
@@ -29,7 +29,7 @@
       <div class="overlay" id="roundscore">
         
         <ul>
-          <h2>Straight</h2>
+          <li id="playerscore" class="score">Player Hands</li>
           <li id="trick1" class="trick">
             <img id="card0" src="./images/Cards/Medium/Clubs2.png" width=55px height=80px></img>
             <img id="card1" src="./images/Cards/Medium/Clubs3.png" width=55px height=80px></img>
@@ -37,7 +37,6 @@
             <img id="card3" src="./images/Cards/Medium/Clubs5.png" width=55px height=80px></img>
             <img id="card4" src="./images/Cards/Medium/Clubs6.png" width=55px height=80px></img>
           </li>
-          <h2>Straight</h2>
           <li id="trick2" class="trick">
             <img id="card5" src="./images/Cards/Medium/Clubs7.png" width=55px height=80px></img>
             <img id="card6" src="./images/Cards/Medium/Clubs8.png" width=55px height=80px></img>
@@ -45,7 +44,6 @@
             <img id="card8 " src="./images/Cards/Medium/Clubs10.png" width=55px height=80px></img>
             <img id="card9" src="./images/Cards/Medium/Clubs11.png" width=55px height=80px></img>
           </li>
-          <h2>Straight</h2>
           <li id="trick3" class="trick">
             <img id="card10" src="./images/Cards/Medium/Hearts2.png" width=55px height=80px></img>
             <img id="card11" src="./images/Cards/Medium/Hearts3.png" width=55px height=80px></img>
@@ -53,7 +51,6 @@
             <img id="card13" src="./images/Cards/Medium/Hearts5.png" width=55px height=80px></img>
             <img id="card14" src="./images/Cards/Medium/Hearts6.png" width=55px height=80px></img>
           </li>
-          <h2>Straight</h2>
           <li id="trick4" class="trick">
             <img id="card15" src="./images/Cards/Medium/Hearts7.png" width=55px height=80px></img>
             <img id="card16" src="./images/Cards/Medium/Hearts8.png" width=55px height=80px></img>
@@ -61,9 +58,18 @@
             <img id="card18 " src="./images/Cards/Medium/Hearts10.png" width=55px height=80px></img>
             <img id="card19" src="./images/Cards/Medium/Hearts11.png" width=55px height=80px></img>
           </li>
+          <li id="playerscore" class="score">Player Score    3</li>
         </ul>
         <ul>
-          <h2>Straight</h2>
+        <li class="score">VS</li>
+        <li class="score">0</li>
+        <li class="score">0</li>
+        <li class="score">0</li>
+        <li class="score">0</li>
+        <button id="continuebutton">Continue</button>
+        </ul>
+        <ul>
+          <li id="dealerscore" class="score">Dealer Hands</li>
           <li id="trick5" class="trick">
             <img id="card20" src="./images/Cards/Medium/Diamond2.png" width=55px height=80px></img>
             <img id="card21" src="./images/Cards/Medium/Diamond3.png" width=55px height=80px></img>
@@ -71,7 +77,6 @@
             <img id="card23" src="./images/Cards/Medium/Diamond5.png" width=55px height=80px></img>
             <img id="card24" src="./images/Cards/Medium/Diamond6.png" width=55px height=80px></img>
           </li>
-          <h2>Straight</h2>
           <li id="trick6" class="trick">
             <img id="card25" src="./images/Cards/Medium/Diamond7.png" width=55px height=80px></img>
             <img id="card26" src="./images/Cards/Medium/Diamond8.png" width=55px height=80px></img>
@@ -79,7 +84,6 @@
             <img id="card28 " src="./images/Cards/Medium/Diamond10.png" width=55px height=80px></img>
             <img id="card29" src="./images/Cards/Medium/Diamond11.png" width=55px height=80px></img>
           </li>
-          <h2>Straight</h2>
           <li id="trick7" class="trick">
             <img id="card30" src="./images/Cards/Medium/Spades2.png" width=55px height=80px></img>
             <img id="card31" src="./images/Cards/Medium/Spades3.png" width=55px height=80px></img>
@@ -87,7 +91,6 @@
             <img id="card33" src="./images/Cards/Medium/Spades5.png" width=55px height=80px></img>
             <img id="card34" src="./images/Cards/Medium/Spades6.png" width=55px height=80px></img>
           </li>
-          <h2>Straight</h2>
           <li id="trick8" class="trick">
             <img id="card35" src="./images/Cards/Medium/Spades7.png" width=55px height=80px></img>
             <img id="card36" src="./images/Cards/Medium/Spades8.png" width=55px height=80px></img>
@@ -95,8 +98,9 @@
             <img id="card38 " src="./images/Cards/Medium/Spades10.png" width=55px height=80px></img>
             <img id="card39" src="./images/Cards/Medium/Spades11.png" width=55px height=80px></img>
           </li>
+          <li id="dealerscore" class="score">Dealer Score     1</li>
         </ul>
-        <button id="continuebutton">Continue</button>
+        
       </div>
       <div class="overlay" id="drawcard">
       </div>

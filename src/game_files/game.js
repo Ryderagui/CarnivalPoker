@@ -7,8 +7,8 @@ class Game {
     static START_HAND = 7;
     static MAXROUNDS = 10;
     constructor(){
-        this.dealer = new Dealer({pos: [200,0], name: "Dealer", color:"#800080"})
-        this.player = new Player({pos: [200,0], name: "Player", color:"#FFA500"})
+        this.dealer = new Dealer({pos: [285,240], name: "Dealer", color:"#FFA500"})
+        this.player = new Player({pos: [285,60], name: "Player", color:"#FFA500"})
         this.deck = new Deck();
         this.round = 0;
         this.prep_game();
@@ -26,6 +26,9 @@ class Game {
         this.dealer.tricks[3].active = false;
         this.player.tricks[2].active = false;
         this.player.tricks[3].active = false;
+        d
+
+
     }
 
     drawPlayer(){

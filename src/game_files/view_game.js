@@ -66,7 +66,7 @@ class ViewGame {
         let mouseY = parseInt(e.clientY - yOffset);
         console.log([e.clientX,e.clientY],"Event Mouse Click Array")
         console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
-        const newScoreRoundButton = [[515,345],[160,80]];
+        const newScoreRoundButton = [[1000,345],[160,80]];
         const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
         let points = {points: newScoreRoundButtonPoints}
         this.tracePath(points,this.dealerCtx)
@@ -201,9 +201,9 @@ class ViewGame {
         this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
         this.dealerCtx.fillText(`${remRounds}`,1090,190);
         this.dealerCtx.fillStyle = "#777777"
-        this.dealerCtx.fillRect(515,345,160,80)
+        this.dealerCtx.fillRect(1000,345,160,80)
         this.dealerCtx.fillStyle = "black";
-        this.dealerCtx.fillText(`Score Round`,535,395);
+        this.dealerCtx.fillText(`Score Round`,1025,395);
         //+20,+50
     }
 

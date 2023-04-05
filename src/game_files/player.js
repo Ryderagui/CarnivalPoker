@@ -44,7 +44,7 @@ class Player{
         trickArray.push(trick1);
         let trick2 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]], color: "#00FF00", trickid: 2, active: true});
         trickArray.push(trick2);
-        let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+Trick.HEIGHT], color: "#FF0000", trickid: 3, active: false});
+        let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+Trick.HEIGHT], color: "#800080", trickid: 3, active: false});
         trickArray.push(trick3);
         let trick4 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]+Trick.HEIGHT], color: "#0000FF", trickid: 4, active: false});
         trickArray.push(trick4);
@@ -53,14 +53,13 @@ class Player{
     animate(ctx){
         ctx.clearRect(0,0,Player.DIM_X+Trick.HEIGHT,Player.DIM_Y)
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.pos[0],this.pos[1],Player.DIM_X,Player.DIM_Y)
         this.tricks.forEach((trick)=>{
             trick.animate(ctx);
         })
-        ctx.font = "50px Arial";
-        ctx.fillStyle = this.color;
-        ctx.fillText(`${this.name}`,40,100);
-        ctx.fillText(`${this.score}`,90,150);
+        ctx.font = "40px Arial";
+        ctx.fillStyle = "white";
+        // ctx.fillText(`${this.name}`,this.pos[0],this.pos[0]-50);
+        // ctx.fillText(`${this.score}`,this.pos[0],this.pos[0]-50);
         this.animateGold(ctx);
     }
 

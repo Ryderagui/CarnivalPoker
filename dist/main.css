@@ -3,10 +3,13 @@
   \*************************************************************************************************************************************/
 h1 {
   text-align: center;
+  height: 50px;
+  margin: 20px;
 }
 
 body {
   margin: 0px;
+  background-color: #242464;
 }
 
 #overlay {
@@ -21,9 +24,10 @@ body {
   background-color: #dcdcdc;
 }
 
-.overlay {
+div.overlay {
   width: 50vh;
   height: 35vh;
+  opacity: 1;
   margin: auto;
   margin-top: 10vh;
   background-color: purple;
@@ -54,8 +58,8 @@ body {
 #roundscore {
   display: none;
   justify-content: flex-start;
-  height: 800px;
-  width: 800px;
+  height: 600px;
+  width: 875px;
 }
 
 .trick {
@@ -104,4 +108,13 @@ canvas {
 
 #continuebutton {
   display: absolute;
+  margin-top: 80px;
+  height: 30px;
+}
+
+.score {
+  margin: 30px;
+  font-size: 35px;
+  color: white;
+  text-align: center;
 }
