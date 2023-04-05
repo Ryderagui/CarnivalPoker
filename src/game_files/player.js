@@ -44,22 +44,18 @@ class Player{
         trickArray.push(trick1);
         let trick2 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]], color: "#00CC33", trickid: 2, active: true});
         trickArray.push(trick2);
-        let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+Trick.HEIGHT], color: "#800080", trickid: 3, active: false});
+        let trick3 = new Trick({pos: [this.pos[0],this.pos[1]+Trick.HEIGHT], color: "#800080", trickid: 3, active: true});
         trickArray.push(trick3);
-        let trick4 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]+Trick.HEIGHT], color: "#0099FF", trickid: 4, active: false});
+        let trick4 = new Trick({pos: [this.pos[0]+Trick.WIDTH,this.pos[1]+Trick.HEIGHT], color: "#0099FF", trickid: 4, active: true});
         trickArray.push(trick4);
         this.tricks = trickArray;
     }
     animate(ctx){
-        ctx.clearRect(0,0,Player.DIM_X+Trick.HEIGHT,Player.DIM_Y)
+        // ctx.clearRect(0,0,900,200)
         ctx.fillStyle = this.color;
         this.tricks.forEach((trick)=>{
             trick.animate(ctx);
         })
-        ctx.font = "40px Arial";
-        ctx.fillStyle = "white";
-        // ctx.fillText(`${this.name}`,this.pos[0],this.pos[0]-50);
-        // ctx.fillText(`${this.score}`,this.pos[0],this.pos[0]-50);
         this.animateGold(ctx);
     }
 
@@ -79,36 +75,42 @@ class Player{
     animateGold(ctx){
         // Might move this to the game class
         if(this.name ==="Player"){
-        ctx.font = "40px Arial";
-        ctx.fillStyle = "black";
-        ctx.fillText(`Gold ${this.gold}`,1030,60);
+        //Dealer Score 
+        ctx.fillStyle = "#003399"
+        ctx.fillRect(980,370,130,260)
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#FFFFFF";
+        ctx.strokeRect(980,370,130,260);    
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "#FFFFFF"
+        ctx.fillText(`Gold: ${this.gold}`,995,400);
         // Button for new card
         const cardback = new Image();
         cardback.src = "images/Cards/Medium/BackRed1.png"
-        ctx.drawImage(cardback,1020,200,55,80);
+        ctx.drawImage(cardback,1020,405,55,80);
         ctx.font = "20px Arial";
-        ctx.fillStyle = "black";
-        ctx.fillText(`New Card`,1090,240);
-        ctx.fillText(`2`,1125,265);
+        ctx.fillStyle = "#FFFFFF"
+        ctx.fillText(`New Card`,995,507);
+        ctx.fillText(`2`,1090,507);
         /// Five in a row for the new hand
-        ctx.drawImage(cardback,1020,100,55,80);
-        ctx.drawImage(cardback,1026,100,55,80);
-        ctx.drawImage(cardback,1032,100,55,80);
-        ctx.drawImage(cardback,1038,100,55,80);
-        ctx.drawImage(cardback,1044,100,55,80);
+        ctx.drawImage(cardback,995,515,55,80);
+        ctx.drawImage(cardback,1001,515,55,80);
+        ctx.drawImage(cardback,1007,515,55,80);
+        ctx.drawImage(cardback,1013,515,55,80);
+        ctx.drawImage(cardback,1019,515,55,80);
         ctx.font = "20px Arial";
-        ctx.fillStyle = "black";
-        ctx.fillText(`New Trick`,1110,140);
-        ctx.fillText(`6`,1145,160);
+        ctx.fillStyle = "#FFFFFF"
+        ctx.fillText(`New Trick`,995,620);
+        ctx.fillText(`6`,1092,620);
         //This is a box 1020 to 1100 or 80 by 80
         //The points are [1020,100],[1100,100],[1020,180],[1100,180]
         cardback.onload = ()=> {
-            ctx.drawImage(cardback,1020,200,55,80);
-            ctx.drawImage(cardback,1020,100,55,80);
-            ctx.drawImage(cardback,1026,100,55,80);
-            ctx.drawImage(cardback,1032,100,55,80);
-            ctx.drawImage(cardback,1038,100,55,80);
-            ctx.drawImage(cardback,1044,100,55,80);
+            ctx.drawImage(cardback,1020,405,55,80);
+            ctx.drawImage(cardback,995,515,55,80);
+            ctx.drawImage(cardback,1001,515,55,80);
+            ctx.drawImage(cardback,1007,515,55,80);
+            ctx.drawImage(cardback,1013,515,55,80);
+            ctx.drawImage(cardback,1019,515,55,80);
         }
         
         

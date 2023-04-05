@@ -2,16 +2,14 @@ const Util = require("./util")
 
 class ViewGame {
 
-    constructor(game,ctx1,ctx2,pos){
+    constructor(game,ctx,pos){
         this.game = game;
-        this.dealerCtx = ctx1;
-        this.playerCtx = ctx2;
+        this.gameCtx = ctx;
         this.allCards = [];
         this.allTricks = [];
         this.setupScreen();
         this.buildTricksCards();
-        this.bindPlayer();
-        this.bindDealer();
+        this.bindCanvas();
         this.cardSelected = false;
         this.pos = pos;
     }
@@ -60,43 +58,43 @@ class ViewGame {
         }
     }
 
-    bindPlayer(){
-        let canvas = document.getElementById("player");
+    bindCanvas(){
+        let canvas = document.getElementById("game");
         // console.log(canvas,"canvasgrabbed");
-        canvas.addEventListener('click',this.handlePlayerCanvasClick.bind(this))
+        canvas.addEventListener('click',this.handleCanvasClick.bind(this))
     }
-    bindDealer(){
-        let canvas = document.getElementById("dealer");
-        // console.log(canvas,"canvasgrabbed");
-        canvas.addEventListener('click',this.handleDealerCanvasClick.bind(this))
-    }
-    handleDealerCanvasClick(e) {
-        e.preventDefault();
-        console.log("Click detected")
+    // bindDealer(){
+    //     let canvas = document.getElementById("game");
+    //     // console.log(canvas,"canvasgrabbed");
+    //     canvas.addEventListener('click',this.handleDealerCanvasClick.bind(this))
+    // }
+    // handleDealerCanvasClick(e) {
+    //     e.preventDefault();
+    //     console.log("Click detected")
      
-        let xOffset = this.pos[0];
-        let yOffset = this.pos[1];
-        let mouseX = parseInt(e.clientX - xOffset);
-        let mouseY = parseInt(e.clientY - yOffset);
-        console.log([e.clientX,e.clientY],"Event Mouse Click Array")
-        console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
-        const newScoreRoundButton = [[1000,345],[160,80]];
-        const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
-        let points = {points: newScoreRoundButtonPoints}
-        this.tracePath(points,this.dealerCtx)
-        if(this.dealerCtx.isPointInPath(mouseX,mouseY)){
-            console.log("Click on Score Round");
-            this.playRound();
-        }
+    //     let xOffset = this.pos[0];
+    //     let yOffset = this.pos[1];
+    //     let mouseX = parseInt(e.clientX - xOffset);
+    //     let mouseY = parseInt(e.clientY - yOffset);
+    //     console.log([e.clientX,e.clientY],"Event Mouse Click Array")
+    //     console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+    //     const newScoreRoundButton = [[1000,345],[160,80]];
+    //     const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
+    //     let points = {points: newScoreRoundButtonPoints}
+    //     this.tracePath(points,this.gameCtx)
+    //     if(this.gameCtx.isPointInPath(mouseX,mouseY)){
+    //         console.log("Click on Score Round");
+    //         this.playRound();
+    //     }
 
-    }
+    // }
 
-    handlePlayerCanvasClick(e) {
+    handleCanvasClick(e) {
         e.preventDefault();
         console.log("Click detected")
         // console.log(this.cardSelected,"Card Selected?")
         let xOffset = this.pos[0];
-        let yOffset = 500 + this.pos[1];
+        let yOffset = this.pos[1];
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
         console.log([e.clientX,e.clientY],"Event Mouse Click Array")
@@ -108,12 +106,12 @@ class ViewGame {
             for(let i =0; i< this.allCards.length;i++){
                 let card = this.allCards[i];
                 // console.log(card.pos,"Card Pos");
-                this.tracePath(card,this.playerCtx);
-                if (this.playerCtx.isPointInPath(mouseX,mouseY)){
+                this.tracePath(card,this.gameCtx);
+                if (this.gameCtx.isPointInPath(mouseX,mouseY)){
                     this.cardSelected = card;
                     card.selected = true;
                     console.log(card,"grabbed card");
-                    this.game.player.animate(this.playerCtx);
+                    this.game.player.animate(this.gameCtx);
                     this.buildTricksCards();
                     break;
                     
@@ -124,42 +122,52 @@ class ViewGame {
             for(let i = 0; i < this.allTricks.length;i++){
                 let trick = this.allTricks[i];
                 // console.log(trick.pos,"Trick Pos");
-                this.tracePath(trick,this.playerCtx);
-                if (this.playerCtx.isPointInPath(mouseX,mouseY)){
+                this.tracePath(trick,this.gameCtx);
+                if (this.gameCtx.isPointInPath(mouseX,mouseY)){
                     console.log(trick,"grabbed trick");
                     this.moveCard(this.cardSelected,trick);
-                    this.game.player.animate(this.playerCtx);
+                    this.game.player.animate(this.gameCtx);
                     this.buildTricksCards();
                 }
             }
         }
-        const newTrickButton = [[1020,100],[80,80]];
-        const newCardButton = [[1020,200],[55,80]];
+        const newTrickButton = [[995,515],[80,80]];
+        const newCardButton = [[1020,405],[55,80]];
         const newTrickButtonPoints = Util.createPoints(newTrickButton[0],newTrickButton[1]);
         const newCardButtonPoints = Util.createPoints(newCardButton[0],newCardButton[1]);
         // Eventually need to error handle if there isnt enough gold
         if(this.game.player.gold >= 6){
             let points = {points: newTrickButtonPoints}
-            this.tracePath(points,this.playerCtx)
-            if(this.playerCtx.isPointInPath(mouseX,mouseY)){
+            this.tracePath(points,this.gameCtx)
+            if(this.gameCtx.isPointInPath(mouseX,mouseY)){
                 console.log("Clicked on Trick Button");
                 this.game.player.activateNextTrick();
                 this.game.player.gold -= 6;
-                this.game.player.animate(this.playerCtx);
+                this.game.player.animate(this.gameCtx);
                 this.buildTricksCards();
             }
         }
         // Eventually error handle not enough gold
         if(this.game.player.gold >= 2){
             let points = {points: newCardButtonPoints}
-            this.tracePath(points,this.playerCtx)
-            if(this.playerCtx.isPointInPath(mouseX,mouseY)){
+            this.tracePath(points,this.gameCtx)
+            if(this.gameCtx.isPointInPath(mouseX,mouseY)){
                 console.log("Clicked on Card Button");
                 this.game.drawPlayer();
                 this.game.player.gold -= 2;
-                this.game.player.animate(this.playerCtx);
+                this.game.player.animate(this.gameCtx);
                 this.buildTricksCards();
             }
+        }
+        // New Round button
+        //525,470,140,50
+        const newScoreRoundButton = [[525,470],[140,50]];
+        const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
+        let points = {points: newScoreRoundButtonPoints}
+        this.tracePath(points,this.gameCtx)
+        if(this.gameCtx.isPointInPath(mouseX,mouseY)){
+            console.log("Click on Score Round");
+            this.playRound();
         }
 
         
@@ -193,39 +201,54 @@ class ViewGame {
 
 
     setupScreen(){
-        this.game.dealer.animate(this.dealerCtx);
-        this.game.player.animate(this.playerCtx);
+        this.game.dealer.animate(this.gameCtx);
+        this.game.player.animate(this.gameCtx);
         this.animateRounds();
     }
 
     animateRounds(){
-        // Eventually move this to the dealer class
-        this.dealerCtx.font = "40px Arial";
-        this.dealerCtx.fillStyle = "black";
-        this.dealerCtx.onload = ()=> {
-        this.dealerCtx.fillText(`Round ${this.game.round}`,1010,100);
-        this.dealerCtx.font = "20px Arial";
-        let remRounds = 10-this.game.round;
-        this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
-        this.dealerCtx.fillText(`${remRounds}`,1090,190);
+        this.gameCtx.font = "40px Arial";
+        this.gameCtx.fillStyle = "#FFFFFF";
+        this.gameCtx.clearRect(350,0,300,198)
+        this.gameCtx.onload = ()=> {
+        this.gameCtx.clearRect(350,195,100,50)
+        this.gameCtx.fillText(`Dealer Hands`,350,195);
         }
-        this.dealerCtx.fillText(`Round ${this.game.round}`,1010,100);
-        this.dealerCtx.font = "20px Arial";
-        let remRounds = 10-this.game.round;
-        this.dealerCtx.fillText(`Remaining Rounds:`,1010,160);
-        this.dealerCtx.fillText(`${remRounds}`,1090,190);
-        this.dealerCtx.fillStyle = "#777777"
-        this.dealerCtx.fillRect(1000,345,160,80)
-        this.dealerCtx.fillStyle = "black";
-        this.dealerCtx.fillText(`Score Round`,1025,395);
-        //+20,+50
+        this.gameCtx.fillText(`Dealer Hands`,350,195);
+
+        //Draw Score Button
+        this.gameCtx.font = "24px Arial Bold";
+        this.gameCtx.fillStyle = "#003399"
+        this.gameCtx.fillRect(525,470,140,50)
+        this.gameCtx.fillStyle = "#FFFFFF";
+        this.gameCtx.fillText(`Score Round`,532,500);
+        this.gameCtx.lineWidth = 3;
+        this.gameCtx.strokeStyle = "#FFFFFF";
+        this.gameCtx.strokeRect(525,470,140,50);
+        //Player Score 
+        this.gameCtx.fillStyle = "#003399"
+        this.gameCtx.fillRect(285,470,170,50)
+        this.gameCtx.fillStyle = "#FFFFFF";
+        this.gameCtx.fillText(`Player Score: ${this.game.player.score}`,292,500);
+        this.gameCtx.lineWidth = 3;
+        this.gameCtx.strokeStyle = "#FFFFFF";
+        this.gameCtx.strokeRect(285,470,170,50);
+        //Dealer Score 
+        this.gameCtx.fillStyle = "#003399"
+        this.gameCtx.fillRect(746,470,170,50)
+        this.gameCtx.fillStyle = "#FFFFFF";
+        this.gameCtx.fillText(`Dealer Score: ${this.game.player.score}`,752,500);
+        this.gameCtx.lineWidth = 3;
+        this.gameCtx.strokeStyle = "#FFFFFF";
+        this.gameCtx.strokeRect(746,470,170,50);
+
     }
 
     playRound(){
         this.game.nextRound();
         this.resetCardLinks();
-        this.game.dealer.animate(this.dealerCtx);
-        this.game.player.animate(this.playerCtx);
+        this.game.dealer.animate(this.gameCtx);
+        this.game.player.animate(this.gameCtx);
         this.animateRounds();
         this.buildTricksCards();
         const roundscore = document.getElementById("roundscore");

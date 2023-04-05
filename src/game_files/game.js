@@ -7,8 +7,8 @@ class Game {
     static START_HAND = 7;
     static MAXROUNDS = 10;
     constructor(){
-        this.dealer = new Dealer({pos: [285,240], name: "Dealer", color:"#FFA500"})
-        this.player = new Player({pos: [285,60], name: "Player", color:"#FFA500"})
+        this.dealer = new Dealer({pos: [285,200], name: "Dealer", color:"#FFA500"})
+        this.player = new Player({pos: [285,560], name: "Player", color:"#FFA500"})
         this.deck = new Deck();
         this.round = 0;
         this.prep_game();
@@ -22,18 +22,18 @@ class Game {
         }
         // console.log(this.player.tricks[0],"starting hand");
         // console.log(this.dealer.tricks[0],"starting hand");
-        this.dealer.tricks[2].active = false;
-        this.dealer.tricks[3].active = false;
-        this.player.tricks[2].active = false;
-        this.player.tricks[3].active = false;
-        const trick3 = document.getElementById("trick3");
-        const trick4 = document.getElementById("trick4");
-        const trick7 = document.getElementById("trick7");
-        const trick8 = document.getElementById("trick8");
-        trick3.style.display = "none";
-        trick4.style.display = "none";
-        trick7.style.display = "none";
-        trick8.style.display = "none";
+        // this.dealer.tricks[2].active = false;
+        // this.dealer.tricks[3].active = false;
+        // this.player.tricks[2].active = false;
+        // this.player.tricks[3].active = false;
+        // const trick3 = document.getElementById("trick3");
+        // const trick4 = document.getElementById("trick4");
+        // const trick7 = document.getElementById("trick7");
+        // const trick8 = document.getElementById("trick8");
+        // trick3.style.display = "none";
+        // trick4.style.display = "none";
+        // trick7.style.display = "none";
+        // trick8.style.display = "none";
     }
 
     drawPlayer(){

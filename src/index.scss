@@ -55,16 +55,16 @@ div.overlay {
 #roundscore{
     display: none; //flip to flex
     justify-content: flex-start;
-    height: 600px;
-    width: 900px;
+    left: 10%;
+    width: 920px;
+    height: 666px;
+   
     background-image: url("/images/BulletinBoard.jpg");
 }
 
 div ul{
     display: flex;
     flex-direction: column;
-    width: 380px;
-    height: 600px;
     padding: 3px;
     align-items: center;
 }
@@ -78,28 +78,39 @@ div ul{
     justify-content: space-evenly;
     margin: 5px;
 }
+#hand1 {
+    padding-left: 42px;
+    padding-right: 0px;
+}
+#hand2 {
+    padding-left: 0px;
+    padding-right: 42px;
+}
 
 img {
     padding: 3px;
 }
 
-.score{
-    margin: 30px;
-    height: 40px;
-    font-size: 35px;
-    color: white;
+#scorelist {
+    margin: 0px;
+    padding: 0px;
+    width: 50px;
+    margin-top: 20px;
 }
 
-
-div label{
-    margin: 0px;
-    background-color: orange;
+.score{
+    margin: 35px;
+    height: 40px;
+    font-size: 35px;
+    color: black;
+    font-weight: bold;
 }
 
 
 li {
     list-style-type: none;
     display: flex;
+    margin: 5px;
 }
 
 canvas {
@@ -116,8 +127,35 @@ canvas {
 }
 
 #continuebutton {
-    display: absolute;
-    margin-top: 80px;
-    height: 30px;
+    margin-top: 0px;
+    height: 75px;
+    width: 175px;
+    font-size: 35px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
 
+#playerscore {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+#dealerscore {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+#VS{
+    margin-bottom: 5px;
+}
+
+#navbar {
+    height: 50px;
+}
+
+#title {
+    font: Phosphate;
+    font-size: 50px;
+    color: black;
+    font-weight: bold;
 }

@@ -14,9 +14,14 @@
   <body>
     <!-- <div height="200" width="1200"><h1>Carnival Poker</h1></div> -->
     <div id="game">
-      <h1></h1>
-    <canvas id="dealer" height="500" width="1200"></canvas>
-    <canvas id="player" height="300" width="1200"></canvas>
+    <ul id="navbar">
+    <li><a href </li>
+    <li id="title">Carnival Poker</li>
+   
+    <li></li>
+    <li></li>
+    </ul>
+    <canvas id="canvas" height="800" width="1200"></canvas>
     </div>
     <div id="overlay">
       <div class="overlay" id="start">
@@ -27,8 +32,7 @@
       <button id="start-button">Start Game</button>
       </div>
       <div class="overlay" id="roundscore">
-        
-        <ul>
+        <ul id="hand1">
           <li id="playerscore" class="score">Player Hands</li>
           <li id="trick1" class="trick">
             <img id="1-0" src="./images/transparent.png" width=55px height=80px></img>
@@ -58,17 +62,17 @@
             <img id="4-3" src="./images/transparent.png" width=55px height=80px></img>
             <img id="4-4" src="./images/transparent.png" width=55px height=80px></img>
           </li>
-          <li id="playerscore" class="score">Player Score    3</li>
+          <li id="playerscore" class="score">Total Score    3</li>
         </ul>
-        <ul>
-        <li class="score">VS</li>
+        <ul id="scorelist">
+        <li class="score" id="VS">VS</li>
         <li class="score" id="score1">0</li>
-        <li class="score" id="score1">0</li>
-        <li class="score" id="score1"></li>
-        <li class="score" id="score1"></li>
+        <li class="score" id="score2">0</li>
+        <li class="score" id="score3">0</li>
+        <li class="score" id="score4">0</li>
         <button id="continuebutton">Continue</button>
         </ul>
-        <ul>
+        <ul id="hand2">
           <li id="dealerscore" class="score">Dealer Hands</li>
           <li id="trick5" class="trick">
             <img id="5-0" src="./images/transparent.png" width=55px height=80px></img>
@@ -98,7 +102,7 @@
             <img id="8-3" src="./images/transparent.png" width=55px height=80px></img>
             <img id="8-4" src="./images/transparent.png" width=55px height=80px></img>
           </li>
-          <li id="dealerscore" class="score">Dealer Score     1</li>
+          <li id="dealerscore" class="score">Total Score     1</li>
         </ul>
         
       </div>
