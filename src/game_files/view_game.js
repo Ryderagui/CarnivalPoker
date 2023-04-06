@@ -90,14 +90,14 @@ class ViewGame {
 
     handleCanvasClick(e) {
         e.preventDefault();
-        console.log("Click detected")
+        // console.log("Click detected")
         // console.log(this.cardSelected,"Card Selected?")
         let xOffset = this.pos[0];
         let yOffset = this.pos[1];
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
-        console.log([e.clientX,e.clientY],"Event Mouse Click Array")
-        console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+        // console.log([e.clientX,e.clientY],"Event Mouse Click Array")
+        // console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
         // console.log([this.allCards.length],"Card Array Length");
         // console.log([this.allTricks.length],"Trick Array Length");
         // see if a card has been clicked on
@@ -109,7 +109,7 @@ class ViewGame {
                 if (this.gameCtx.isPointInPath(mouseX,mouseY)){
                     this.cardSelected = card;
                     card.selected = true;
-                    console.log(card,"grabbed card");
+                    // console.log(card,"grabbed card");
                     this.game.player.animate(this.gameCtx);
                     this.buildTricksCards();
                     break;
@@ -123,7 +123,7 @@ class ViewGame {
                 // console.log(trick.pos,"Trick Pos");
                 this.tracePath(trick,this.gameCtx);
                 if (this.gameCtx.isPointInPath(mouseX,mouseY)){
-                    console.log(trick,"grabbed trick");
+                    // console.log(trick,"grabbed trick");
                     this.moveCard(this.cardSelected,trick);
                     this.game.player.animate(this.gameCtx);
                     this.buildTricksCards();
@@ -165,7 +165,7 @@ class ViewGame {
         let points = {points: newScoreRoundButtonPoints}
         this.tracePath(points,this.gameCtx)
         if(this.gameCtx.isPointInPath(mouseX,mouseY) && this.game.round <= Game.MAXROUNDS){
-            console.log(this.game.round,"Round#");
+            // console.log(this.game.round,"Round#");
             this.playRound();
         }
 

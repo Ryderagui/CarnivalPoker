@@ -45,9 +45,9 @@ class Game {
         // Include auto win if mismatch on trick count
 
         let dealer_scores = this.dealer.evaluateBoard();  
-        console.log(dealer_scores,"Dealer Scores")
+        // console.log(dealer_scores,"Dealer Scores")
         let player_scores = this.player.evaluateBoard();
-        console.log(player_scores,"Player Scores")
+        // console.log(player_scores,"Player Scores")
         let min = dealer_scores.length < player_scores.length ? dealer_scores.length : player_scores.length;
         // console.log(min,"min");
         let playerroundscore = 0;
@@ -57,21 +57,21 @@ class Game {
                 let scoreobj = document.getElementById(`score${i+1}`)
                 scoreobj.innerText = 0;
                 dealerroundscore += 1;
-                console.log("Dealer Wins 1")
+                // console.log("Dealer Wins 1")
             }else if(dealer_scores[i]<player_scores[i]){
                 let scoreobj = document.getElementById(`score${i+1}`)
                 scoreobj.innerText = 1;
                 playerroundscore += 1;
-                console.log("Player Wins 1")
+                // console.log("Player Wins 1")
             }else if(dealer_scores[i] === player_scores[i]){
-                console.log("Tie");
+                // console.log("Tie");
                 let scoreobj = document.getElementById(`score${i+1}`)
                 scoreobj.innerText = "";
             }
         }
         this.player.score += playerroundscore;
         this.dealer.score += dealerroundscore;
-        console.log([this.player.score,this.dealer.score],"Score after round");
+        // console.log([this.player.score,this.dealer.score],"Score after round");
         let playerscorehtml = document.getElementById(`playerscore`)
         let dealerscorehtml = document.getElementById(`dealerscore`)
         playerscorehtml.innerText = `Round Score     ${playerroundscore}`

@@ -24,7 +24,7 @@ body {
 }
 
 div.overlay {
-    width: 50vh;
+    width: 40vh;
     height: 35vh;
     opacity: 1;
     margin: auto;
@@ -36,6 +36,7 @@ div.overlay {
     padding-top: 2vh;
     padding-left: 2.5vh;
     padding-right: 2.5vh;
+    margin-left: 35%;
     height: 35vh;
     text-align: center;
     background-color: purple; 
@@ -58,7 +59,8 @@ div.overlay {
 #roundscore{
     display: none; //flip to flex
     justify-content: flex-start;
-    left: 10%;
+    left:5%;
+    margin-left: 25%; 
     width: 920px;
     height: 666px;
     background-image: url("../images/BulletinBoard.jpg");
@@ -129,6 +131,7 @@ canvas {
 }
 #gameover {
     display: none;
+    margin-left: 35%;
     
 }
 
@@ -156,9 +159,18 @@ canvas {
 }
 
 #navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     height: 50px;
     margin-top: 5px;
     margin-bottom: 20px;
+    
+}
+
+#navbar li{
+    margin-left: 20px;
+    margin-right: 22px;
 }
 
 #title {
