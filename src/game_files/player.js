@@ -63,13 +63,11 @@ class Player{
         let scores = [];
         for(let i = 0;i <this.tricks.length;i++){
             let trick = this.tricks[i];
-            let sum = trick.evaluatePoker();
-            for(let j = 0;j < trick.cards.length;j++){
-                sum += trick.cards[j].value;
-            }
-            scores.push(sum);
+            trick.evaluatePoker();
+            let value = trick.value || 0;
+            scores.push(value);
         }
-        return scores.sort();
+        return scores;
     }
 
     animateGold(ctx){

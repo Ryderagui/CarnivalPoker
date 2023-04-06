@@ -25,6 +25,8 @@ startbutton.addEventListener('click',()=>{
 continuebutton.addEventListener('click',()=>{
     overlay.style.display = "none";
     roundscore.style.display = "none";
+    view.game.drawDealer();
+    view.setupScreen();
 })
 
 

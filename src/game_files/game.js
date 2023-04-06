@@ -20,20 +20,6 @@ class Game {
         for(let i = 0; i < Game.START_HAND; i++){
             this.drawDealer();
         }
-        // console.log(this.player.tricks[0],"starting hand");
-        // console.log(this.dealer.tricks[0],"starting hand");
-        // this.dealer.tricks[2].active = false;
-        // this.dealer.tricks[3].active = false;
-        // this.player.tricks[2].active = false;
-        // this.player.tricks[3].active = false;
-        // const trick3 = document.getElementById("trick3");
-        // const trick4 = document.getElementById("trick4");
-        // const trick7 = document.getElementById("trick7");
-        // const trick8 = document.getElementById("trick8");
-        // trick3.style.display = "none";
-        // trick4.style.display = "none";
-        // trick7.style.display = "none";
-        // trick8.style.display = "none";
     }
 
     drawPlayer(){
@@ -49,7 +35,6 @@ class Game {
         this.round += 1;
         this.player.gold += 3;
         this.compareBoards();
-        this.drawDealer();
         // console.log(this.player.score,"player score");
         // console.log(this.dealer.score,"dealer score");
     }
@@ -65,14 +50,30 @@ class Game {
         console.log(player_scores,"Player Scores")
         let min = dealer_scores.length < player_scores.length ? dealer_scores.length : player_scores.length;
         // console.log(min,"min");
+        let playerroundscore = 0;
+        let dealerroundscore = 0;
         for(let i = 0;i<min;i++){
             if(dealer_scores[i]>player_scores[i]){
-                this.dealer.score += 1
+                let scoreobj = document.getElementById(`score${i+1}`)
+                scoreobj.innerText = 0;
+                dealerroundscore += 1;
+                console.log("Dealer Wins 1")
             }else if(dealer_scores[i]<player_scores[i]){
-                this.player.score += 1
+                let scoreobj = document.getElementById(`score${i+1}`)
+                scoreobj.innerText = 1;
+                playerroundscore += 1;
+                console.log("Player Wins 1")
+            }else if(dealer_scores[i] === player_scores[i]){
+                console.log("Tie");
             }
         }
-        
+        this.player.score += playerroundscore;
+        this.dealer.score += dealerroundscore;
+        console.log([this.player.score,this.dealer.score],"Score after round");
+        let playerscorehtml = document.getElementById(`playerscore`)
+        let dealerscorehtml = document.getElementById(`dealerscore`)
+        playerscorehtml.innerText = `Round Score     ${playerroundscore}`
+        dealerscorehtml.innerText = `Round Score     ${dealerroundscore}`
     }
 
     resetBoard(){

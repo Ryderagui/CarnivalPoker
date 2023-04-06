@@ -123,14 +123,11 @@ class Trick {
         this.major = this.major || values[0];
         let rank = traitList.indexOf(this.trait)+1;
         let tiebreaks = values.filter((num)=> num !== this.major);
-        console.log(this.major,"major");
         let majorSum = this.major*(base**rank)*2;
         let tiebreakSum = 0;
         for(let i = 1;i<tiebreaks.length+1;i++){
                 tiebreakSum += tiebreaks[i-1]*(base**rank)/(base**i);
         }
-        console.log(majorSum,"major sum")
-        console.log(tiebreakSum,"tibreak sum")
         this.value = majorSum + tiebreakSum;
         return this.value;
     }

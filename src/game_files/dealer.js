@@ -46,8 +46,6 @@ class Dealer extends Player{
     }
 
     newTrickSet (){
-        // Makes 4 empty tricks of the appropriate colors and positions
-        // Returns an array of these tricks. 
         let trickArray = [];
         let tempPos = this.pos;
         let trick1 = new Trick({pos: this.pos, trickid: 1});

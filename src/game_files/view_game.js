@@ -21,8 +21,6 @@ class ViewGame {
         for(let i = 1;i<tricksidx.length;i++){
             for(let j = 0;j<cardsidx.length;j++){
                 let cardobj = document.getElementById(`${i}-${j}`);
-                console.log(`${i}-${j}`,"id")
-                console.log(cardobj,"cardobj")
                 cardobj.src = "./images/transparent.png";
             }
         }
@@ -201,12 +199,15 @@ class ViewGame {
 
 
     setupScreen(){
+        this.resetCardLinks();
+        this.gameCtx.clearRect(0,0,1200,900)
         this.game.dealer.animate(this.gameCtx);
         this.game.player.animate(this.gameCtx);
-        this.animateRounds();
+        this.animateScores();
+        this.buildTricksCards();
     }
 
-    animateRounds(){
+    animateScores(){
         this.gameCtx.font = "40px Arial";
         this.gameCtx.fillStyle = "#FFFFFF";
         this.gameCtx.clearRect(350,0,300,198)
@@ -237,7 +238,7 @@ class ViewGame {
         this.gameCtx.fillStyle = "#003399"
         this.gameCtx.fillRect(746,470,170,50)
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.fillText(`Dealer Score: ${this.game.player.score}`,752,500);
+        this.gameCtx.fillText(`Dealer Score: ${this.game.dealer.score}`,752,500);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
         this.gameCtx.strokeRect(746,470,170,50);
@@ -246,10 +247,7 @@ class ViewGame {
 
     playRound(){
         this.game.nextRound();
-        this.resetCardLinks();
-        this.game.dealer.animate(this.gameCtx);
-        this.game.player.animate(this.gameCtx);
-        this.animateRounds();
+        this.setupScreen();
         this.buildTricksCards();
         const roundscore = document.getElementById("roundscore");
         const overlay = document.getElementById("overlay");
