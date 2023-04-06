@@ -53,7 +53,7 @@ div.overlay {
   left: 15%;
   width: 1400px;
   height: 900px;
-  background-image: url("images/CarnivalBackground.png");
+  background-image: url("../images/CarnivalBackground.png");
   justify-content: center;
 }
 
@@ -63,7 +63,7 @@ div.overlay {
   left: 10%;
   width: 920px;
   height: 666px;
-  background-image: url("images/BulletinBoard.jpg");
+  background-image: url("../images/BulletinBoard.jpg");
 }
 
 div ul {
