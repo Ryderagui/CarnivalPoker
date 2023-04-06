@@ -1,6 +1,6 @@
 h2 {
     text-align: center;
-    height: 50px;
+    height: 25px;
     margin: 0px;
     color: white;
 }
@@ -33,7 +33,7 @@ div.overlay {
 
 #start {
     display: block;
-    padding-top: 5vh;
+    padding-top: 2vh;
     padding-left: 2.5vh;
     padding-right: 2.5vh;
     height: 35vh;
@@ -117,7 +117,7 @@ li {
 }
 .instructions {
     color: white;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 canvas {
@@ -181,4 +181,18 @@ canvas {
     text-align: center;
     font: 100px; 
     font-weight: bold;
+}
+
+#start ul{
+    margin: 0;
+}
+
+#start-button{
+    margin-top: 0px;
+    height: 60px;
+    width: 220px;
+    font-size: 35px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
 }
