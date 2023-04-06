@@ -98,7 +98,7 @@ class Player{
         ctx.drawImage(cardback,1019,515,55,80);
         ctx.font = "20px Arial";
         ctx.fillStyle = "#FFFFFF"
-        ctx.fillText(`New Trick`,995,620);
+        ctx.fillText(`New Hand`,995,620);
         ctx.fillText(`6`,1092,620);
         //This is a box 1020 to 1100 or 80 by 80
         //The points are [1020,100],[1100,100],[1020,180],[1100,180]
