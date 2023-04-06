@@ -80,6 +80,18 @@ class Game {
 
     }
 
+    winner(){
+        let playerscore = this.player.score;
+        let dealerscore = this.dealer.score;
+        let result = [playerscore,dealerscore];
+        if(playerscore > dealerscore){
+            result.push("Player Wins!");
+        }else{
+            result.push("Dealer Wins!");
+        }
+        return result;
+    }
+
 }
 // const g = new Game();
 // g.play();

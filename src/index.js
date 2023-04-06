@@ -25,8 +25,23 @@ startbutton.addEventListener('click',()=>{
 continuebutton.addEventListener('click',()=>{
     overlay.style.display = "none";
     roundscore.style.display = "none";
-    view.game.drawDealer();
     view.setupScreen();
+    if(game.round < Game.MAXROUNDS){
+    view.game.drawDealer();
+    }else{
+    const playerscore = document.getElementById("finalplayerscore")
+    const dealerscore = document.getElementById("finaldealerscore")
+    const winner = document.getElementById("winner");
+    const gameover = document.getElementById("gameover");
+    const result = game.winner();
+    console.log([playerscore,dealerscore,winner],"edits")
+    playerscore.innerText = result[0];
+    dealerscore.innerText = result[1];
+    winner.innerText = result[2];
+    overlay.style.display = "block";
+    gameover.style.display = "block";
+    }
+   
 })
 
 

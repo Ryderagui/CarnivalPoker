@@ -1,4 +1,5 @@
 const Util = require("./util")
+const Game = require("./game")
 
 class ViewGame {
 
@@ -163,8 +164,8 @@ class ViewGame {
         const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
         let points = {points: newScoreRoundButtonPoints}
         this.tracePath(points,this.gameCtx)
-        if(this.gameCtx.isPointInPath(mouseX,mouseY)){
-            console.log("Click on Score Round");
+        if(this.gameCtx.isPointInPath(mouseX,mouseY) && this.game.round <= Game.MAXROUNDS){
+            console.log(this.game.round,"Round#");
             this.playRound();
         }
 

@@ -186,7 +186,6 @@ class Trick {
         ctx.fillRect(trickX,trickY,Trick.WIDTH,Trick.HEIGHT)
         ctx.fillStyle = "#FFFFFF"
         ctx.font = "20px Arial";
-        //${this.values} ${this.value} 
         ctx.fillText(`${this.trait}`,trickX+115,trickY+115)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
