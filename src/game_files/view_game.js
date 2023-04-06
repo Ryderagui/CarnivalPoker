@@ -89,7 +89,7 @@ class ViewGame {
     // }
 
     handleCanvasClick(e) {
-        e.preventDefault();
+        // e.preventDefault();
         // console.log("Click detected")
         // console.log(this.cardSelected,"Card Selected?")
         let xOffset = this.pos[0];
