@@ -180,6 +180,7 @@ class Trick {
         this.cards = sorted;
         this.updateCards();
         this.evaluatePoker();
+        ctx.fillStyle = this.color
         let trickX = this.pos[0];
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,Trick.WIDTH,Trick.HEIGHT)

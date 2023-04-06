@@ -20,7 +20,7 @@ body {
     right: 0;
     bottom: 0;
     z-index: 2;
-    background-color: rbga(0,0,0,1);
+    background-color: rbga(0,0,0,0.5);
 }
 
 div.overlay {
@@ -36,10 +36,10 @@ div.overlay {
     padding-top: 5vh;
     padding-left: 2.5vh;
     padding-right: 2.5vh;
-    opacity: 1;
     height: 35vh;
     text-align: center;
-    background-color: purple;
+    background-color: purple; 
+
 }
 
 #overlay button {
@@ -51,7 +51,7 @@ div.overlay {
     left: 15%;
     width: 1400px;
     height: 900px;
-    background-image: url("/images/CarnivalBackground.png");
+    background-image: url("images/CarnivalBackground.png");
     justify-content: center;
 }
 
@@ -61,7 +61,7 @@ div.overlay {
     left: 10%;
     width: 920px;
     height: 666px;
-    background-image: url("/images/BulletinBoard.jpg");
+    background-image: url("images/BulletinBoard.jpg");
 }
 
 div ul{
@@ -113,12 +113,11 @@ li {
     list-style-type: none;
     display: flex;
     margin: 5px;
+    
+}
+.instructions {
     color: white;
     font-size: 15px;
-}
-#instructions {
-    color: white;
-    
 }
 
 canvas {
@@ -170,3 +169,16 @@ canvas {
     font-weight: bold;
 }
 
+#gameover {
+    display: none;
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 25vh;
+    text-align: center;
+    background-color: black; 
+    color: white;
+    text-align: center;
+    font: 100px; 
+    font-weight: bold;
+}
