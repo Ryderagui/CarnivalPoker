@@ -65,6 +65,8 @@ class Game {
                 console.log("Player Wins 1")
             }else if(dealer_scores[i] === player_scores[i]){
                 console.log("Tie");
+                let scoreobj = document.getElementById(`score${i+1}`)
+                scoreobj.innerText = "";
             }
         }
         this.player.score += playerroundscore;

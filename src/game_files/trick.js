@@ -140,9 +140,8 @@ class Trick {
     addCard(card){
         // Need to refactor this to check if the trick has 5 cards
         let count = this.cards.length;
-        if(count < Trick.MAXCARDS){
-            let pos = this.pos 
-
+        if(count < Trick.MAXCARDS && this.active){
+            let pos = this.pos;
             pos = [pos[0]+Trick.XBUFFER,pos[1]+Trick.YBUFFER]
             let xshift = count*Card.CARDWIDTH + count*3;
             pos = [pos[0]+xshift,pos[1]];
@@ -171,7 +170,7 @@ class Trick {
     }
 
 
-    animate(ctx){
+    animate(ctx,name){
         if(this.active){
         const trickobj = document.getElementById(`trick${this.trickid}`)
         trickobj.style.display = "flex";
@@ -192,6 +191,22 @@ class Trick {
             currentCard.animate(ctx,currentCard.pos);
             let cardobj = document.getElementById(`${this.trickid}-${i}`)
             cardobj.src = currentCard.sprite.src
+        }
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#FFFFFF";
+        ctx.strokeRect(this.pos[0],this.pos[1],Trick.WIDTH,Trick.HEIGHT);
+        }else{
+        ctx.fillStyle = this.color
+        let trickX = this.pos[0];
+        let trickY = this.pos[1];
+        ctx.fillRect(trickX,trickY,Trick.WIDTH,Trick.HEIGHT)
+        ctx.fillStyle = "#FFFFFF"
+        ctx.font = "20px Arial";
+        if(name === "Player"){
+        ctx.fillText(`Unlock Hand: 6 Gold!`,trickX+60,trickY+70)
+        }else{
+        ctx.fillStyle = "#FFFFFF"
+        ctx.fillText(`Inactive Hand`,trickX+90,trickY+70)    
         }
         ctx.lineWidth = 3;
         ctx.strokeStyle = "#FFFFFF";
