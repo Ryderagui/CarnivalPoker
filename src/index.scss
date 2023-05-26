@@ -49,10 +49,10 @@ div.overlay {
 
 #game {
     position: fixed;
-    left: 15%;
-    width: 1400px;
-    height: 900px;
+    width: 100vw;
+    height: 100vh;
     background-image: url("../images/CarnivalBackground.png");
+    background-size: cover;
     justify-content: center;
 }
 

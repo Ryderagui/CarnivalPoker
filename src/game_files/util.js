@@ -40,4 +40,21 @@ export function createPoints(pos,box){
         }
     ];
     return points;
+}
+
+export function canvasSize() {
+    const windowWidth= window.innerWidth;
+    const windowHeight= window.innerHeight;
+    const canvasDimensions = [[900,600],[1200,800],[1500,1000]]
+    let canvasSize = canvasDimensions[0];
+    if((windowWidth+200)>canvasDimensions[2][0] && (windowHeight+200)>canvasDimensions[2][1]){
+        canvasSize = canvasDimensions[2];
+        return {canvasSize: canvasSize, size: "Large"}
+    } else if((windowWidth+200)>canvasDimensions[1][0] && (windowHeight+200)>canvasDimensions[1][1]){
+        canvasSize = canvasDimensions[1];
+        return {canvasSize: canvasSize, size: "Medium"}
+    }else {
+        canvasSize = canvasDimensions[0];
+        return {canvasSize: canvasSize, size: "Small"}
     }
+}

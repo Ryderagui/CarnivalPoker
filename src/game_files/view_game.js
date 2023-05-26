@@ -1,9 +1,11 @@
 const Util = require("./util")
 const Game = require("./game")
-
+const Card = require("./card")
+const Trick = require("./trick")
 class ViewGame {
 
-    constructor(game,ctx,pos){
+    constructor(game,ctx,pos,canvasSize){
+        this.canvasSize = canvasSize;
         this.game = game;
         this.gameCtx = ctx;
         this.allCards = [];
@@ -130,8 +132,8 @@ class ViewGame {
                 }
             }
         }
-        const newTrickButton = [[995,515],[80,80]];
-        const newCardButton = [[1020,405],[55,80]];
+        const newTrickButton = [[995,515],[Card.CARDWIDTH+Card.CARDWIDTH*0.25,Card.CARDHEIGHT]];
+        const newCardButton = [[1020,405],[Card.CARDWIDTH,Card.CARDHEIGHT]];
         const newTrickButtonPoints = Util.createPoints(newTrickButton[0],newTrickButton[1]);
         const newCardButtonPoints = Util.createPoints(newCardButton[0],newCardButton[1]);
         // Eventually need to error handle if there isnt enough gold

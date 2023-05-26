@@ -1,6 +1,14 @@
+const Util = require("./util")
+
+console.log(Util.canvasSize(),"Util canvasSize")
 class Card {
-    static CARDWIDTH = 55;
-    static CARDHEIGHT = 80;
+    static CARDDIMENSIONS = [[41,60],[55,80],[69,100]]
+    
+    static canvasSize = Util.canvasSize().size;
+    static CARDWIDTH = this.canvasSize === "Large" ? this.CARDDIMENSIONS[2][0] : this.canvasSize === "Medium" 
+        ? this.CARDDIMENSIONS[1][0] : this.CARDDIMENSIONS[0][0];
+    static CARDHEIGHT = this.canvasSize === "Large" ? this.CARDDIMENSIONS[2][1] : this.canvasSize === "Medium" 
+    ? this.CARDDIMENSIONS[1][1] : this.CARDDIMENSIONS[0][1];
     constructor(object) {
         
         //#2-14

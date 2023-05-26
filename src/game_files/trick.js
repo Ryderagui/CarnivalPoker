@@ -3,10 +3,14 @@ const Card = require("./card")
 const Util = require("./util")
 
 class Trick {
-    static WIDTH = 310;
-    static HEIGHT = 120;
-    static YBUFFER = 10;
-    static XBUFFER = 10;
+    static TRICKDIMENSIONS = [[233,90],[310,120],[388,150]]
+    static canvasSize = Util.canvasSize().size;
+    static WIDTH = this.canvasSize === "Large" ? this.TRICKDIMENSIONS[2][0] : this.canvasSize === "Medium" 
+    ? this.TRICKDIMENSIONS[1][0] : this.TRICKDIMMENSIONS[0][0];
+    static HEIGHT = this.canvasSize === "Large" ? this.TRICKDIMENSIONS[2][1] : this.canvasSize === "Medium" 
+    ? this.TRICKDIMENSIONS[1][1] : this.TRICKDIMENSIONS[0][1];
+    static YBUFFER = this.HEIGHT*0.09;
+    static XBUFFER = this.HEIGHT*0.09;
     static MAXCARDS = 5;
     constructor(object){
         this.pos = object.pos;

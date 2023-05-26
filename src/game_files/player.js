@@ -1,10 +1,13 @@
 const Trick = require("./trick")
+const Util = require("./util")
+
 
 class Player{
     static DIM_X = Trick.WIDTH*2;
     static DIM_Y = Trick.HEIGHT*2;
     constructor(object){
-  
+        this.canvasSize = object.canvasSize;
+        this.DIM_X = 
         this.pos = object.pos;
         this.name = object.name;
         this.score = 0;

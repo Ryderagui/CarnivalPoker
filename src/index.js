@@ -5,12 +5,31 @@ const ViewGame = require("./game_files/view_game")
 // Ask about event handelers and what should own them
 // 
 
+
+const windowWidth= window.innerWidth;
+const windowHeight= window.innerHeight;
+//Width,Height
+// 1400,1000 with 1200,800. so +
+// In essence, this is +- 25%
+const canvasDimensions = [[900,600],[1200,800],[1500,1000]]
 const gameCanvas = document.getElementById("canvas");
 const gameCtx = gameCanvas.getContext("2d");
-const game = new Game ();
+let canvasSize = canvasDimensions[0];
+
+if((windowWidth+200)>canvasDimensions[2][0] && (windowHeight+200)>canvasDimensions[2][1]){
+    canvasSize = canvasDimensions[2];
+} else if((windowWidth+200)>canvasDimensions[1][0] && (windowHeight+200)>canvasDimensions[1][1]){
+    canvasSize = canvasDimensions[1];
+}else {
+    canvasSize = canvasDimensions[0];
+}
+console.log(canvasSize,"canvasSize")
+gameCanvas.setAttribute("width",canvasSize[0])
+gameCanvas.setAttribute("height",canvasSize[1])
+const game = new Game (canvasSize);
 const gameCanvasRect = gameCanvas.getBoundingClientRect();
 const gamepos = [gameCanvasRect.x,gameCanvasRect.y];
-const view = new ViewGame(game,gameCtx,gamepos);
+const view = new ViewGame(game,gameCtx,gamepos,canvasSize);
 const overlay = document.getElementById("overlay");
 const start = document.getElementById("start");
 const startbutton = document.getElementById("start-button");
