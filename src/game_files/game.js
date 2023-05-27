@@ -10,8 +10,8 @@ class Game {
     // 800 - 2*120 (Trick) = 560
 
     constructor(canvasSize){
-        this.dealer = new Dealer({pos: [canvasSize[1]*0.24,canvasSize[1]*0.25], name: "Dealer", color:"#FFA500",canvasSize: canvasSize})
-        this.player = new Player({pos: [canvasSize[1]*0.24,canvasSize[1]*0.7], name: "Player", color:"#FFA500",canvasSize: canvasSize})
+        this.dealer = new Dealer({pos: [canvasSize[1]*0.36,canvasSize[1]*0.25], name: "Dealer", color:"#FFA500",canvasSize: canvasSize})
+        this.player = new Player({pos: [canvasSize[1]*0.36,canvasSize[1]*0.7], name: "Player", color:"#FFA500",canvasSize: canvasSize})
         this.deck = new Deck();
         this.canvasSize = canvasSize;
         this.round = 0;

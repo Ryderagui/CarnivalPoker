@@ -6,7 +6,7 @@ class Trick {
     static TRICKDIMENSIONS = [[233,90],[310,120],[388,150]]
     static canvasSize = Util.canvasSize().size;
     static WIDTH = this.canvasSize === "Large" ? this.TRICKDIMENSIONS[2][0] : this.canvasSize === "Medium" 
-    ? this.TRICKDIMENSIONS[1][0] : this.TRICKDIMMENSIONS[0][0];
+    ? this.TRICKDIMENSIONS[1][0] : this.TRICKDIMENSIONS[0][0];
     static HEIGHT = this.canvasSize === "Large" ? this.TRICKDIMENSIONS[2][1] : this.canvasSize === "Medium" 
     ? this.TRICKDIMENSIONS[1][1] : this.TRICKDIMENSIONS[0][1];
     static YBUFFER = this.HEIGHT*0.09;

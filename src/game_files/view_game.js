@@ -15,6 +15,17 @@ class ViewGame {
         this.bindCanvas();
         this.cardSelected = false;
         this.pos = pos;
+        this.scaler = 1;
+        this.calcScaler();
+        console.log(this.scaler,"this.scaler")
+    }
+
+    calcScaler(){
+        if(this.canvasSize[0] === 900){
+            return this.scaler = 0.75;
+        }else if(this.canvasSize[0] === 1500){
+            return this.scaler = 1.25;
+        }
     }
 
     resetCardLinks(){
@@ -98,8 +109,8 @@ class ViewGame {
         let yOffset = this.pos[1];
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
-        // console.log([e.clientX,e.clientY],"Event Mouse Click Array")
-        // console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+        console.log([e.clientX,e.clientY],"Event Mouse Click Array")
+        console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
         // console.log([this.allCards.length],"Card Array Length");
         // console.log([this.allTricks.length],"Trick Array Length");
         // see if a card has been clicked on
@@ -132,8 +143,8 @@ class ViewGame {
                 }
             }
         }
-        const newTrickButton = [[995,515],[Card.CARDWIDTH+Card.CARDWIDTH*0.25,Card.CARDHEIGHT]];
-        const newCardButton = [[1020,405],[Card.CARDWIDTH,Card.CARDHEIGHT]];
+        const newTrickButton = [[(995/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1]],[Card.CARDWIDTH+Card.CARDWIDTH*0.25,Card.CARDHEIGHT]];
+        const newCardButton = [[(1020/1200)*this.canvasSize[0],(405/800)*this.canvasSize[1]],[Card.CARDWIDTH,Card.CARDHEIGHT]];
         const newTrickButtonPoints = Util.createPoints(newTrickButton[0],newTrickButton[1]);
         const newCardButtonPoints = Util.createPoints(newCardButton[0],newCardButton[1]);
         // Eventually need to error handle if there isnt enough gold
@@ -162,7 +173,7 @@ class ViewGame {
         }
         // New Round button
         //525,470,140,50
-        const newScoreRoundButton = [[525,470],[140,50]];
+        const newScoreRoundButton = [[(500/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1]],[140*this.scaler,50*this.scaler]];
         const newScoreRoundButtonPoints = Util.createPoints(newScoreRoundButton[0],newScoreRoundButton[1]);
         let points = {points: newScoreRoundButtonPoints}
         this.tracePath(points,this.gameCtx)
@@ -203,48 +214,51 @@ class ViewGame {
 
     setupScreen(){
         this.resetCardLinks();
-        this.gameCtx.clearRect(0,0,1200,900)
+        this.gameCtx.clearRect(0,0,this.canvasSize[0],this.canvasSize[1]) 
+
         this.game.dealer.animate(this.gameCtx);
         this.game.player.animate(this.gameCtx);
         this.animateScores();
         this.buildTricksCards();
     }
-
+    
     animateScores(){
+        this.calcScaler();
         this.gameCtx.font = "40px Arial";
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.clearRect(350,0,300,198)
+        this.gameCtx.clearRect((250/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
         this.gameCtx.onload = ()=> {
-        this.gameCtx.clearRect(350,195,100,50)
-        this.gameCtx.fillText(`Dealer Hands`,350,195);
+            this.calcScaler();
+            this.gameCtx.clearRect((250/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
+            this.gameCtx.fillText(`Dealer Hands`,(250/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
         }
-        this.gameCtx.fillText(`Dealer Hands`,350,195);
+        this.gameCtx.fillText(`Dealer Hands`,(250/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
 
         //Draw Score Button
-        this.gameCtx.font = "24px Arial Bold";
+        this.gameCtx.font = `${24*this.scaler}px Arial Bold`;
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect(525,470,140,50)
+        this.gameCtx.fillRect((430/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],140*this.scaler,50*this.scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.fillText(`Score Round`,532,500);
+        this.gameCtx.fillText(`Score Round`,(440/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect(525,470,140,50);
+        this.gameCtx.strokeRect((430/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],140*this.scaler,50*this.scaler);
         //Player Score 
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect(285,470,170,50)
+        this.gameCtx.fillRect((200/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.fillText(`Player Score: ${this.game.player.score}`,292,500);
+        this.gameCtx.fillText(`Player Score: ${this.game.player.score}`,(210/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect(285,470,170,50);
+        this.gameCtx.strokeRect((200/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler);
         //Dealer Score 
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect(746,470,170,50)
+        this.gameCtx.fillRect((640/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.fillText(`Dealer Score: ${this.game.dealer.score}`,752,500);
+        this.gameCtx.fillText(`Dealer Score: ${this.game.dealer.score}`,(652/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect(746,470,170,50);
+        this.gameCtx.strokeRect((640/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler);
 
     }
 

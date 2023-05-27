@@ -122,7 +122,7 @@ li {
 }
 
 canvas {
-    margin-left: 100px;
+    
 }
 
 #drawcard {
@@ -219,4 +219,10 @@ body footer{
     text-align: center;
     color:white;
     font-size: 20px;
+}
+
+.canvas-wrapper {
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
