@@ -16,6 +16,7 @@ class Player{
         //Probably want an array of trick pos.
         //Probably want to prefill each board with 4 tricks, 3 of which are empty.
         this.tricks = [];
+        this.activeTricks = 2;
         this.makeTricks();
     }
 
@@ -34,6 +35,7 @@ class Player{
             let trick = this.tricks[i];
             if(trick.active === false){
                 trick.active = true;
+                this.activeTricks += 1;
                 break;
             }
         }
