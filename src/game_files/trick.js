@@ -24,6 +24,16 @@ class Trick {
         this.active = object.active;
         this.points = [];
         this.updatePoints();
+        this.scaler = 1;
+        this.calcScaler();
+    }
+
+    calcScaler(){
+        if(this.canvasSize === "Small"){
+            return this.scaler = 0.75;
+        }else if(this.canvasSize === "Large"){
+            return this.scaler = 1.25;
+        }
     }
 
     updatePoints(pos){
@@ -175,6 +185,8 @@ class Trick {
 
 
     animate(ctx,name){
+        let fontArray = [16,22,30];
+        const fontSize = Trick.canvasSize === "Small" ? fontArray[0] : Trick.canvasSize === "Large" ? fontArray[2] : fontArray[1]
         if(this.active){
         const trickobj = document.getElementById(`trick${this.trickid}`)
         trickobj.style.display = "flex";
@@ -188,8 +200,8 @@ class Trick {
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,Trick.WIDTH,Trick.HEIGHT)
         ctx.fillStyle = "#FFFFFF"
-        ctx.font = "20px Arial";
-        ctx.fillText(`${this.trait}`,trickX+115,trickY+115)
+        ctx.font = `${fontSize}px Arial`;
+        ctx.fillText(`${this.trait}`,trickX+Trick.WIDTH*0.33,trickY+Trick.HEIGHT*0.95)
         for(let i = 0;i<this.cards.length;i++){
             let currentCard = this.cards[i];
             currentCard.animate(ctx,currentCard.pos);
@@ -205,12 +217,13 @@ class Trick {
         let trickY = this.pos[1];
         ctx.fillRect(trickX,trickY,Trick.WIDTH,Trick.HEIGHT)
         ctx.fillStyle = "#FFFFFF"
-        ctx.font = "20px Arial";
+        ctx.font = `${fontSize}px Arial`;
         if(name === "Player"){
-        ctx.fillText(`Unlock Hand: 6 Gold!`,trickX+60,trickY+70)
+        console.log(fontSize,"fontSize")
+        ctx.fillText(`Unlock Hand: 6 Gold!`,trickX+Trick.WIDTH*0.2*this.scaler,trickY+Trick.HEIGHT*0.5)
         }else{
         ctx.fillStyle = "#FFFFFF"
-        ctx.fillText(`Inactive Hand`,trickX+90,trickY+70)    
+        ctx.fillText(`Inactive Hand`,trickX+Trick.WIDTH*0.3*this.scaler,trickY+Trick.HEIGHT*0.5)    
         }
         ctx.lineWidth = 3;
         ctx.strokeStyle = "#FFFFFF";

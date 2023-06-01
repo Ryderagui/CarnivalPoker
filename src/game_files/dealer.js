@@ -12,15 +12,15 @@ class Dealer extends Player{
     addCardBoard(card){
         for(let i = 0;i <this.tricks.length;i++){
             if(this.tricks[i].active && this.tricks[i].addCard(card)){
-                this.dealerPlayCycle();
-                return true;
+                break;
             }else if(!this.tricks[i].active){
                 this.activateNextTrick();
                 this.addCardBoard(card);
                 break;
             }
         }
-        return false;
+        this.dealerPlayCycle();
+        return true;
     }
 
     makeTricks(){
@@ -235,8 +235,16 @@ class Dealer extends Player{
                 })
             })
         }else{
-
-        }        
+            if(this.handTracker.result.length > this.activeTricks){
+                let flatResult = this.handTracker.result.flat();
+                for(let i = 0; i < this.activeTricks; i++){
+                    this.tricks[i].cards = [];
+                    while((this.tricks[i].cards.length < 5) && (flatResult.length > 0)) {
+                        this.tricks[i].addCard(flatResult.shift());
+                    }
+                }
+            }        
+        }
     }
 
 

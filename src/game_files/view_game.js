@@ -215,7 +215,7 @@ class ViewGame {
     setupScreen(){
         this.resetCardLinks();
         this.gameCtx.clearRect(0,0,this.canvasSize[0],this.canvasSize[1]) 
-
+        this.game.animate(this.gameCtx);
         this.game.dealer.animate(this.gameCtx);
         this.game.player.animate(this.gameCtx);
         this.animateScores();
@@ -224,41 +224,43 @@ class ViewGame {
     
     animateScores(){
         this.calcScaler();
-        this.gameCtx.font = "40px Arial";
+        let scaler = this.scaler || 1; 
+        this.gameCtx.font = `${40*scaler}px Arial`;
         this.gameCtx.fillStyle = "#FFFFFF";
         this.gameCtx.clearRect((250/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
         this.gameCtx.onload = ()=> {
             this.calcScaler();
-            this.gameCtx.clearRect((250/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
-            this.gameCtx.fillText(`Dealer Hands`,(250/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
+            this.gameCtx.font = `${40}px Arial`;
+            this.gameCtx.clearRect((300/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
+            this.gameCtx.fillText(`Dealer Hands`,(300/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
         }
-        this.gameCtx.fillText(`Dealer Hands`,(250/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
+        this.gameCtx.fillText(`Dealer Hands`,(300/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
 
         //Draw Score Button
-        this.gameCtx.font = `${24*this.scaler}px Arial Bold`;
+        this.gameCtx.font = `${24*scaler}px Arial Bold`;
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect((430/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],140*this.scaler,50*this.scaler)
+        this.gameCtx.fillRect((525/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],140*scaler,50*scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.fillText(`Score Round`,(440/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
+        this.gameCtx.fillText(`Score Round`,(535/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect((430/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],140*this.scaler,50*this.scaler);
+        this.gameCtx.strokeRect((525/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],140*scaler,50*scaler);
         //Player Score 
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect((200/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler)
+        this.gameCtx.fillRect((285/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.fillText(`Player Score: ${this.game.player.score}`,(210/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
+        this.gameCtx.fillText(`Player Score: ${this.game.player.score}`,(295/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect((200/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler);
+        this.gameCtx.strokeRect((285/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler);
         //Dealer Score 
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect((640/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler)
+        this.gameCtx.fillRect((735/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
-        this.gameCtx.fillText(`Dealer Score: ${this.game.dealer.score}`,(652/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
+        this.gameCtx.fillText(`Dealer Score: ${this.game.dealer.score}`,(742/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect((640/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*this.scaler,50*this.scaler);
+        this.gameCtx.strokeRect((735/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler);
 
     }
 

@@ -1,3 +1,4 @@
+const Card = require("./card");
 const Trick = require("./trick")
 const Util = require("./util")
 
@@ -18,8 +19,17 @@ class Player{
         this.tricks = [];
         this.activeTricks = 2;
         this.makeTricks();
+        this.scaler = 1;
+        this.calcScaler();
     }
 
+    calcScaler(){
+        if(this.canvasSize[0] === 900){
+            return this.scaler = 0.75;
+        }else if(this.canvasSize[0] === 1500){
+            return this.scaler = 1.25;
+        }
+    }
 
     addCardBoard(card){
         for(let i = 0;i <this.tricks.length;i++){
@@ -78,42 +88,41 @@ class Player{
     animateGold(ctx){
         // Might move this to the game class
         if(this.name ==="Player"){
-        //Dealer Score 
         ctx.fillStyle = "#003399"
-        ctx.fillRect(980,370,130,260)
+        ctx.fillRect((980/1200)*this.canvasSize[0],(370/800)*this.canvasSize[1],130*this.scaler,260*this.scaler)
         ctx.lineWidth = 3;
         ctx.strokeStyle = "#FFFFFF";
-        ctx.strokeRect(980,370,130,260);    
-        ctx.font = "30px Arial";
+        ctx.strokeRect((980/1200)*this.canvasSize[0],(370/800)*this.canvasSize[1],130*this.scaler,260*this.scaler);    
+        ctx.font = `${30*this.scaler}px Arial`;
         ctx.fillStyle = "#FFFFFF"
-        ctx.fillText(`Gold: ${this.gold}`,995,400);
+        ctx.fillText(`Gold: ${this.gold}`,(995/1200)*this.canvasSize[0],(400/800)*this.canvasSize[1]);
         // Button for new card
         const cardback = new Image();
         cardback.src = "images/Cards/Medium/BackRed1.png"
-        ctx.drawImage(cardback,1020,405,55,80);
-        ctx.font = "20px Arial";
+        ctx.drawImage(cardback,(1020/1200)*this.canvasSize[0],(405/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+        ctx.font =  `${20*this.scaler}px Arial`;
         ctx.fillStyle = "#FFFFFF"
-        ctx.fillText(`New Card`,995,507);
-        ctx.fillText(`2`,1090,507);
+        ctx.fillText(`New Card`,(995/1200)*this.canvasSize[0],(507/800)*this.canvasSize[1]);
+        ctx.fillText(`2`,(1090/1200)*this.canvasSize[0],(507/800)*this.canvasSize[1]);
         /// Five in a row for the new hand
-        ctx.drawImage(cardback,995,515,55,80);
-        ctx.drawImage(cardback,1001,515,55,80);
-        ctx.drawImage(cardback,1007,515,55,80);
-        ctx.drawImage(cardback,1013,515,55,80);
-        ctx.drawImage(cardback,1019,515,55,80);
-        ctx.font = "20px Arial";
+        ctx.drawImage(cardback,(995/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+        ctx.drawImage(cardback,(1001/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+        ctx.drawImage(cardback,(1007/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+        ctx.drawImage(cardback,(1013/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+        ctx.drawImage(cardback,(1019/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+        ctx.font =  `${20*this.scaler}px Arial`;
         ctx.fillStyle = "#FFFFFF"
-        ctx.fillText(`New Hand`,995,620);
-        ctx.fillText(`6`,1092,620);
+        ctx.fillText(`New Hand`,(995/1200)*this.canvasSize[0],(620/800)*this.canvasSize[1]);
+        ctx.fillText(`6`,(1092/1200)*this.canvasSize[0],(620/800)*this.canvasSize[1]);
         //This is a box 1020 to 1100 or 80 by 80
         //The points are [1020,100],[1100,100],[1020,180],[1100,180]
         cardback.onload = ()=> {
-            ctx.drawImage(cardback,1020,405,55,80);
-            ctx.drawImage(cardback,995,515,55,80);
-            ctx.drawImage(cardback,1001,515,55,80);
-            ctx.drawImage(cardback,1007,515,55,80);
-            ctx.drawImage(cardback,1013,515,55,80);
-            ctx.drawImage(cardback,1019,515,55,80);
+            ctx.drawImage(cardback,(1020/1200)*this.canvasSize[0],(405/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+            ctx.drawImage(cardback,(995/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+            ctx.drawImage(cardback,(1001/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+            ctx.drawImage(cardback,(1007/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+            ctx.drawImage(cardback,(1013/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
+            ctx.drawImage(cardback,(1019/1200)*this.canvasSize[0],(515/800)*this.canvasSize[1],Card.CARDWIDTH,Card.CARDHEIGHT);
         }
         
         

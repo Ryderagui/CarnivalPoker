@@ -5,7 +5,7 @@ const Dealer = require("./dealer")
 
 class Game {
     static START_HAND = 7;
-    static MAXROUNDS = 10;
+    static MAXROUNDS = 11;
     //default is 1200,800
     // 800 - 2*120 (Trick) = 560
 
@@ -14,9 +14,19 @@ class Game {
         this.player = new Player({pos: [canvasSize[1]*0.36,canvasSize[1]*0.7], name: "Player", color:"#FFA500",canvasSize: canvasSize})
         this.deck = new Deck();
         this.canvasSize = canvasSize;
-        this.round = 0;
+        this.round = 1;
         this.prep_game();
+        this.scaler = 1;
     }
+    calcScaler(){
+        if(this.canvasSize[0] === 900){
+            return this.scaler = 0.75;
+        }else if(this.canvasSize[0] === 1500){
+            return this.scaler = 1.25;
+        }
+    }
+
+
     prep_game(){
         for(let i = 0; i < Game.START_HAND; i++){
             this.drawPlayer();
@@ -80,6 +90,20 @@ class Game {
         let dealerscorehtml = document.getElementById(`dealerscore`)
         playerscorehtml.innerText = `Round Score     ${playerroundscore}`
         dealerscorehtml.innerText = `Round Score     ${dealerroundscore}`
+    }
+
+    animate(ctx) {
+        this.calcScaler();
+        console.log(`${40*this.scaler}px Arial`)
+        ctx.font = `${40*this.scaler}px Arial`;
+        ctx.fillStyle = "#FFFFFF";
+        ctx.clearRect((725/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
+        ctx.fillText(`Round: ${this.round}`,(725/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
+        ctx.onload = ()=> {
+            this.calcScaler();
+            ctx.clearRect((725/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
+            ctx.fillText(`Dealer Hands`,(725/1200)*this.canvasSize[0],(190/800)*this.canvasSize[1]);
+        }
     }
 
     resetBoard(){
