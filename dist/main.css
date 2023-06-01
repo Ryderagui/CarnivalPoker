@@ -63,8 +63,6 @@ div.overlay {
 #roundscore {
   display: none;
   justify-content: flex-start;
-  left: 5%;
-  margin-left: 27%;
   width: 920px;
   height: 666px;
   background-image: url("../images/BulletinBoard.jpg");
@@ -131,11 +129,6 @@ li {
   display: none;
 }
 
-#gameover {
-  display: none;
-  margin-left: 38%;
-}
-
 #continuebutton {
   margin-top: 0px;
   height: 60px;
@@ -188,11 +181,12 @@ li {
   padding-right: 15px;
   height: 25vh;
   text-align: center;
-  background-color: black;
+  background-color: rgb(76, 76, 76);
   color: white;
   text-align: center;
   font-size: 30px;
   font-weight: bold;
+  border-radius: 5px;
 }
 
 #gameover p {
@@ -238,4 +232,8 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.fab {
+  font-size: 30px;
 }

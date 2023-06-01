@@ -247,20 +247,20 @@ class ViewGame {
         this.gameCtx.strokeRect((525/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],140*scaler,50*scaler);
         //Player Score 
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect((285/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler)
+        this.gameCtx.fillRect((285/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],180*scaler,50*scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
         this.gameCtx.fillText(`Player Score: ${this.game.player.score}`,(295/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect((285/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler);
+        this.gameCtx.strokeRect((285/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],180*scaler,50*scaler);
         //Dealer Score 
         this.gameCtx.fillStyle = "#003399"
-        this.gameCtx.fillRect((735/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler)
+        this.gameCtx.fillRect((735/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],180*scaler,50*scaler)
         this.gameCtx.fillStyle = "#FFFFFF";
         this.gameCtx.fillText(`Dealer Score: ${this.game.dealer.score}`,(742/1200)*this.canvasSize[0],(500/800)*this.canvasSize[1]);
         this.gameCtx.lineWidth = 3;
         this.gameCtx.strokeStyle = "#FFFFFF";
-        this.gameCtx.strokeRect((735/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],170*scaler,50*scaler);
+        this.gameCtx.strokeRect((735/1200)*this.canvasSize[0],(470/800)*this.canvasSize[1],180*scaler,50*scaler);
 
     }
 
