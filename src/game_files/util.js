@@ -47,10 +47,10 @@ export function canvasSize() {
     const windowHeight= window.innerHeight;
     const canvasDimensions = [[900,600],[1200,800],[1500,1000]]
     let canvasSize = canvasDimensions[0];
-    if((windowWidth)>(canvasDimensions[2][0]+200) && (windowHeight)>(canvasDimensions[2][1]+200)){
+    if((windowWidth)>(canvasDimensions[2][0]+200) && (windowHeight)>(canvasDimensions[2][1]+100)){
         canvasSize = canvasDimensions[2];
         return {canvasSize: canvasSize, size: "Large"}
-    } else if(windowWidth>(canvasDimensions[1][0]+200) && (windowHeight>(canvasDimensions[1][1]+200))){
+    } else if(windowWidth>(canvasDimensions[1][0]+200) && (windowHeight>(canvasDimensions[1][1]+100))){
         canvasSize = canvasDimensions[1];
         return {canvasSize: canvasSize, size: "Medium"}
     }else {

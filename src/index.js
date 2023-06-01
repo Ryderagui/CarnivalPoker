@@ -17,29 +17,14 @@ const gameCanvas = document.getElementById("canvas");
 const gameCtx = gameCanvas.getContext("2d");
 let canvasSize = canvasDimensions[0];
 
-if((windowWidth)>(canvasDimensions[2][0]+200) && (windowHeight)>(canvasDimensions[2][1]+200)){
+if((windowWidth)>(canvasDimensions[2][0]+200) && (windowHeight)>(canvasDimensions[2][1]+100)){
     canvasSize = canvasDimensions[2];
-} else if(windowWidth>(canvasDimensions[1][0]+200) && (windowHeight>(canvasDimensions[1][1]+200))){
+} else if(windowWidth>(canvasDimensions[1][0]+200) && (windowHeight>(canvasDimensions[1][1]+100))){
     canvasSize = canvasDimensions[1];
 }else {
     canvasSize = canvasDimensions[0];
 }
-const roundScoreDimensions = [[920*0.75,666*0.75],[920,666],[920*1.25,666*1.25]]
-const roundScore = document.getElementById("roundscore");
-let roundScoreSize = roundScoreDimensions[1]; 
-
-if((windowWidth>(canvasDimensions[2][0]+200)) && (windowHeight>(canvasDimensions[2][1]+200))){
-    roundScoreSize = roundScoreDimensions[2];
-} else if((windowWidth>(canvasDimensions[1][0]+200)) && (windowHeight>(canvasDimensions[1][1]+200))){
-    roundScoreSize = roundScoreDimensions[1];
-}else {
-    roundScoreSize = roundScoreDimensions[0];
-}
-
-roundScore.setAttribute("width",roundScoreSize[0])
-roundScore.setAttribute("height",roundScoreSize[1])
-
-
+console.log([windowWidth,canvasDimensions[1][0]+200,windowHeight,canvasDimensions[1][1]+100],"Deduce Canvas")
 
 console.log(canvasSize,"canvasSize")
 gameCanvas.setAttribute("width",canvasSize[0])

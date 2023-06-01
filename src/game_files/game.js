@@ -47,7 +47,7 @@ class Game {
 
     nextRound(){
         this.round += 1;
-        this.player.gold += 3;
+        this.player.gold += 4;
         this.compareBoards();
         // console.log(this.player.score,"player score");
         // console.log(this.dealer.score,"dealer score");
