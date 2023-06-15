@@ -17,7 +17,6 @@ class ViewGame {
         this.pos = pos;
         this.scaler = 1;
         this.calcScaler();
-        console.log(this.scaler,"this.scaler")
     }
 
     calcScaler(){
@@ -109,8 +108,8 @@ class ViewGame {
         let yOffset = this.pos[1];
         let mouseX = parseInt(e.clientX - xOffset);
         let mouseY = parseInt(e.clientY - yOffset);
-        console.log([e.clientX,e.clientY],"Event Mouse Click Array")
-        console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
+        // console.log([e.clientX,e.clientY],"Event Mouse Click Array")
+        // console.log([mouseX,mouseY],"Mouse Click Pos After Offsets")
         // console.log([this.allCards.length],"Card Array Length");
         // console.log([this.allTricks.length],"Trick Array Length");
         // see if a card has been clicked on
@@ -152,7 +151,7 @@ class ViewGame {
             let points = {points: newTrickButtonPoints}
             this.tracePath(points,this.gameCtx)
             if(this.gameCtx.isPointInPath(mouseX,mouseY)){
-                console.log("Clicked on Trick Button");
+                // console.log("Clicked on Trick Button");
                 this.game.player.activateNextTrick();
                 this.game.player.gold -= 6;
                 this.game.player.animate(this.gameCtx);
@@ -164,7 +163,7 @@ class ViewGame {
             let points = {points: newCardButtonPoints}
             this.tracePath(points,this.gameCtx)
             if(this.gameCtx.isPointInPath(mouseX,mouseY)){
-                console.log("Clicked on Card Button");
+                // console.log("Clicked on Card Button");
                 this.game.drawPlayer();
                 this.game.player.gold -= 2;
                 this.game.player.animate(this.gameCtx);

@@ -36,7 +36,8 @@ div.overlay {
     padding-top: 2vh;
     padding-left: 2.5vh;
     padding-right: 2.5vh;
-    height: 50vh;
+    height: 55vh;
+    width: 42vw;
     text-align: center;
     background-color: purple; 
     border-radius: 10px;
@@ -160,8 +161,10 @@ canvas {
     flex-direction: row;
     justify-content: center;
     height: 50px;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 20px;
+    background: purple;
+    color: white;
     
 }
 
@@ -173,7 +176,7 @@ canvas {
 #title {
     font: Phosphate;
     font-size: 50px;
-    color: black;
+    color: white;
     font-weight: bold;
 }
 
@@ -237,4 +240,31 @@ canvas {
 
 .fab {
     font-size: 30px;
+    color: white;
+}
+
+#restartbutton{
+    margin-top: 0px;
+    height: 60px;
+    width: 220px;
+    font-size: 35px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+#instructions {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#readme {
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+}
+
+#instructions:hover {
+    cursor: pointer;
 }

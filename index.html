@@ -18,10 +18,11 @@
     <div id="game">
       <div class="game-wrapper">
         <ul id="navbar">
-          <li><a  href="https://ryderagui.github.io/CarnivalPoker/"><i class="fab fa-github fa-lg"></i></a></li>
+          <li id="instructions">Instructions</li>
+          <li><a  href="https://github.com/Ryderagui/CarnivalPoker"><i class="fab fa-github fa-lg"></i></a></li>
           <li id="title">Carnival Poker</li>
           <li><a href="https://www.linkedin.com/in/raguilera994/"><i class="fab fa-linkedin fa-lg"></i></a></li>
-          <li></li>
+          <li><a id="readme" href="https://github.com/Ryderagui/CarnivalPoker/blob/main/README.md">Read Me</a></li>
         </ul>
         <div class="canvas-wrapper">
           <canvas id="canvas"></canvas>
@@ -40,13 +41,15 @@
         <div class="overlay-wrapper">
           <h2>Instructions</h2>
           <ul>
-            <li class="instructions">Beat the dealers Poker hand</li>
-            <li class="instructions">Move cards around to make the best hand</li>
-            <li class="instructions">Press Score Round each round</li>
-            <li class="instructions">There are 10 total rounds</li>
-            <li class="instructions">Given 4 gold per round</li>
-            <li class="instructions">New card costs 2 gold</li>
-            <li class="instructions">New hand costs 6 gold</li>
+            <li class="instructions">Play poker against the dealer!</li>
+            <li class="instructions">Matching color boards are compared</li>
+            <li class="instructions">Poker hand rankings are used to score the winning hand</li>            
+            <li class="instructions">Click on a card to select it, and a second click to move it</li>
+            <li class="instructions">Only the player's cards can be moved (Bottom board)</li>
+            <li class="instructions">Press Score Round in the middle to move onto the next round</li>
+            <li class="instructions">Earn 4 gold per round</li>
+            <li class="instructions">Buy a new card for 2 gold</li>
+            <li class="instructions">Buy a new hand for 6 gold</li>
           </ul>
           <button id="start-button">Start Game</button>
         </div>
@@ -134,6 +137,7 @@
       <p>Dealer Score:</p>
       <p id="finaldealerscore">0</p>
       <p id="winner">Player WINS!</p>
+      <button id="restartbutton">Restart</button>
       </div>
       </div>
     </div>

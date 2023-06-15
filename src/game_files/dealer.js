@@ -46,7 +46,6 @@ class Dealer extends Player{
 
 
     updateCardTracker (cards = this.dealerCards, object = this.handTracker){
-        console.log(cards,"cards");
         object.cards = cards;
         let values = [...Array(15).keys()].splice(2,15)
         values.forEach((value) => {
@@ -62,7 +61,6 @@ class Dealer extends Player{
             object[suit].push(card);
             object[val].push(card);
         })
-        console.log(object,"object = hand Tracker")
     }
 
     updateBestHand (object = this.handTracker){
@@ -107,7 +105,7 @@ class Dealer extends Player{
         //
         const cleanUpResult = () => {
             let copyObject = {...object};
-            console.log(copyObject, "Object before card array clean")
+
             object.result.forEach((trick)=>{
                 trick.forEach((card)=>{
                     object.cards.forEach((card2,idx)=>{
@@ -117,10 +115,9 @@ class Dealer extends Player{
                     })
                 })
             })
-            console.log(object, "Object after card array clean")
+     
             return this.updateBestHand(object);
         }
-        console.log([twoKind,threeKind,fourKind,straightCheck,flushCheck],"Check arrays")
         //Build Straight Flush
         // if(flushCheck.length !== 0 && straightCheck.length !== 0){
         //     let straightCards = straightCheck.filter((card)=>{
@@ -141,7 +138,6 @@ class Dealer extends Player{
                 result.push(fourKind[0][i]);
             }
             object.result.push(result);
-            console.log("Found Four Kind");
             return cleanUpResult();
         }
         //Build Full House
@@ -154,7 +150,7 @@ class Dealer extends Player{
                 }
             }
             object.result.push(result);
-            console.log("Found Full House");
+    
             return cleanUpResult();
         }
         //Build Flush
@@ -164,7 +160,7 @@ class Dealer extends Player{
                 result.push(flushCheck[i]);
             }
             object.result.push(result);
-            console.log("Found Flush");
+           
             return cleanUpResult();
         }
         // Build Straight
@@ -174,7 +170,7 @@ class Dealer extends Player{
                 result.push(straightCheck[i]);
             }
             object.result.push(result);
-            console.log("Found Straight");
+           
             return cleanUpResult();
         }
         // Build three of a Kind
@@ -184,7 +180,7 @@ class Dealer extends Player{
                 result.push(threeKind[0][i]);
             }
             object.result.push(result);
-            console.log("Found Three");
+        
             return cleanUpResult();
         }
         // Build two of a Kind
@@ -195,7 +191,7 @@ class Dealer extends Player{
                     result.push(twoKind[0][i]);
                     result.push(twoKind[1][i]);
                 }
-                console.log(result, "Result in Two Pair");
+               
                 object.result.push(result);
                 return cleanUpResult();
             }
@@ -203,7 +199,7 @@ class Dealer extends Player{
             for(let i = 0; i < 2; i++){
                 result.push(twoKind[0][i]);
             }
-            console.log(result, "Result in Pair");
+         
             object.result.push(result);
             return cleanUpResult();
         }
@@ -211,9 +207,9 @@ class Dealer extends Player{
         for(let i = 0; i < 5; i++){
             result.push(object.cards[i]);
         }
-        console.log(result, "Result in Nothing");
+    
         object.result.push(result);
-        console.log("Found Nothing");
+   
         return cleanUpResult();        
     }
 
@@ -223,8 +219,7 @@ class Dealer extends Player{
         if(this.dealerCards.length >= 5){
             this.handTracker.result = [];
             this.updateBestHand();
-            console.log(this.handTracker,"Hand Tracker")
-            console.log(this.dealerCards,"Dealer Cards")
+         
         };
         if(this.activeTricks === this.handTracker.result.length){
             //Easy Case

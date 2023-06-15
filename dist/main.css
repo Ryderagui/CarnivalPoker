@@ -1,3 +1,269 @@
-h2{text-align:center;height:25px;margin:0px;color:#fff}body{margin:0px;background-color:#242464}.main-overlay{position:fixed;width:100vw;height:100vh;display:block;top:0;left:0;right:0;bottom:0;z-index:2;background-color:rbga(0, 0, 0, 0.5)}div.overlay{width:40vh;height:35vh;opacity:1;margin:auto;margin-top:10vh}#start{display:block;padding-top:2vh;padding-left:2.5vh;padding-right:2.5vh;height:50vh;text-align:center;background-color:purple;border-radius:10px}#overlay button{background-color:#fff}#game{display:flex;flex-direction:column;justify-content:space-between;width:100%;height:100%;background-image:url("../images/CarnivalBackground.png");background-size:cover;justify-content:center}#roundscore{display:none;justify-content:flex-start;width:920px;height:666px;background-image:url("../images/BulletinBoard.jpg");background-size:cover}div ul{display:flex;flex-direction:column;padding:3px;align-items:center}.trick{display:flex;height:90px;width:370px;padding:3px;justify-content:space-evenly;margin:5px}#hand1{padding-left:42px;padding-right:0px}#hand2{padding-left:0px;padding-right:42px}img{padding:3px}#scorelist{margin:0px;padding:0px;width:50px;margin-top:20px}.score{margin:33px;height:40px;font-size:35px;color:#000;font-weight:bold}li{list-style-type:none;display:flex;margin:5px}.instructions{color:#fff;font-size:20px}#drawcard{display:none}#continuebutton{margin-top:0px;height:60px;width:165px;font-size:35px;color:#000;font-weight:bold;text-align:center}#playertitle{margin-top:30px;margin-bottom:5px}#dealertitle{margin-top:30px;margin-bottom:5px}#VS{margin-bottom:5px}#navbar{display:flex;flex-direction:row;justify-content:center;height:50px;margin-top:5px;margin-bottom:20px}#navbar li{margin-left:20px;margin-right:22px}#title{font:Phosphate;font-size:50px;color:#000;font-weight:bold}#gameover{display:none;padding-top:30px;padding-left:15px;padding-right:15px;height:40vh;text-align:center;background-color:#4c4c4c;color:#fff;text-align:center;font-size:30px;font-weight:bold;border-radius:5px}#gameover p{margin:5px}#start ul{margin:0}#start-button{margin-top:0px;height:60px;width:220px;font-size:35px;color:#000;font-weight:bold;text-align:center}.footer{height:50px;width:100%;text-align:center;color:#fff;font-size:20px}.canvas-wrapper{display:flex;justify-content:center;align-items:center}.game-wrapper{height:100%;display:flex;flex-direction:column;justify-content:space-between}.overlay-flexbox{display:flex;justify-content:center;align-items:center}.fab{font-size:30px}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+h2 {
+  text-align: center;
+  height: 25px;
+  margin: 0px;
+  color: white;
+}
 
-/*# sourceMappingURL=main.css.map*/
+body {
+  margin: 0px;
+  background-color: #242464;
+}
+
+.main-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: rbga(0, 0, 0, 0.5);
+}
+
+div.overlay {
+  width: 40vh;
+  height: 35vh;
+  opacity: 1;
+  margin: auto;
+  margin-top: 10vh;
+}
+
+#start {
+  display: block;
+  padding-top: 2vh;
+  padding-left: 2.5vh;
+  padding-right: 2.5vh;
+  height: 55vh;
+  width: 42vw;
+  text-align: center;
+  background-color: purple;
+  border-radius: 10px;
+}
+
+#overlay button {
+  background-color: white;
+}
+
+#game {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/CarnivalBackground.png");
+  background-size: cover;
+  justify-content: center;
+}
+
+#roundscore {
+  display: none;
+  justify-content: flex-start;
+  width: 920px;
+  height: 666px;
+  background-image: url("../images/BulletinBoard.jpg");
+  background-size: cover;
+}
+
+div ul {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  align-items: center;
+}
+
+.trick {
+  display: flex;
+  height: 90px;
+  width: 370px;
+  padding: 3px;
+  justify-content: space-evenly;
+  margin: 5px;
+}
+
+#hand1 {
+  padding-left: 42px;
+  padding-right: 0px;
+}
+
+#hand2 {
+  padding-left: 0px;
+  padding-right: 42px;
+}
+
+img {
+  padding: 3px;
+}
+
+#scorelist {
+  margin: 0px;
+  padding: 0px;
+  width: 50px;
+  margin-top: 20px;
+}
+
+.score {
+  margin: 33px;
+  height: 40px;
+  font-size: 35px;
+  color: black;
+  font-weight: bold;
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  margin: 5px;
+}
+
+.instructions {
+  color: white;
+  font-size: 20px;
+}
+
+#drawcard {
+  display: none;
+}
+
+#continuebutton {
+  margin-top: 0px;
+  height: 60px;
+  width: 165px;
+  font-size: 35px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+#playertitle {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+#dealertitle {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+#VS {
+  margin-bottom: 5px;
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 50px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  background: purple;
+  color: white;
+}
+
+#navbar li {
+  margin-left: 20px;
+  margin-right: 22px;
+}
+
+#title {
+  font: Phosphate;
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+}
+
+#gameover {
+  display: none;
+  padding-top: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 40vh;
+  text-align: center;
+  background-color: rgb(76, 76, 76);
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#gameover p {
+  margin: 5px;
+}
+
+#start ul {
+  margin: 0;
+}
+
+#start-button {
+  margin-top: 0px;
+  height: 60px;
+  width: 220px;
+  font-size: 35px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.footer {
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.overlay-flexbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fab {
+  font-size: 30px;
+  color: white;
+}
+
+#restartbutton {
+  margin-top: 0px;
+  height: 60px;
+  width: 220px;
+  font-size: 35px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+#instructions {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#readme {
+  font-weight: bold;
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+}
+
+#instructions:hover {
+  cursor: pointer;
+}

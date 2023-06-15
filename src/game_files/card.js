@@ -1,6 +1,5 @@
 const Util = require("./util")
 
-console.log(Util.canvasSize(),"Util canvasSize")
 class Card {
     static CARDDIMENSIONS = [[41,60],[55,80],[69,100]]
     

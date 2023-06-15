@@ -219,7 +219,6 @@ class Trick {
         ctx.fillStyle = "#FFFFFF"
         ctx.font = `${fontSize}px Arial`;
         if(name === "Player"){
-        console.log(fontSize,"fontSize")
         ctx.fillText(`Unlock Hand: 6 Gold!`,trickX+Trick.WIDTH*0.2*this.scaler,trickY+Trick.HEIGHT*0.5)
         }else{
         ctx.fillStyle = "#FFFFFF"

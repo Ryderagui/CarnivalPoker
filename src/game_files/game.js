@@ -94,7 +94,7 @@ class Game {
 
     animate(ctx) {
         this.calcScaler();
-        console.log(`${40*this.scaler}px Arial`)
+
         ctx.font = `${40*this.scaler}px Arial`;
         ctx.fillStyle = "#FFFFFF";
         ctx.clearRect((725/1200)*this.canvasSize[0],0,300,(150/800)*this.canvasSize[1])
