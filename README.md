@@ -19,7 +19,7 @@ The dealer is given random cards from the deck and contains logic to play at a h
 
 ## Dealer Logic 
 
-The dealer uses a variant of the concept of a greedy algorithm and a large amount of memoization to construct its hands.
+The dealer uses a variant of the concept of a greedy algorithm and recursion to distribute cards between its available hands.
 
 With the given cards available, the dealer will attempt to build the best possible hand, remove those cards from the pool and repeat;
 recursively building the next best possible hand with the cards remaining. 
