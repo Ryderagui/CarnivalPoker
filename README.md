@@ -24,6 +24,32 @@ The dealer uses a variant of the concept of a greedy algorithm and recursion to 
 With the given cards available, the dealer will attempt to build the best possible hand. Next, the dealer removes those cards from the pool and repeats;
 recursively building the next best possible hand with the cards remaining. 
 
+First, there is a CardTracker fuction which sorts the dealers hand by suit and number:
+
+'''
+
+
+updateCardTracker (cards = this.dealerCards, object = this.handTracker){
+        object.cards = cards;
+        let values = [...Array(15).keys()].splice(2,15)
+        values.forEach((value) => {
+            object[value] = [];
+        });
+        let suits = ["Clubs","Hearts","Diamond","Spades"];
+        suits.forEach((suit)=>{
+            object[suit] = [];
+        })
+        cards.forEach((card)=>{
+            let suit = card.suit;
+            let val = card.value;
+            object[suit].push(card);
+            object[val].push(card);
+        })
+    }
+
+'''
+
+
 As a result, the dealer will attempt to play 1-2 strong hands and a final weaker hand with what is left over. 
 
 There are additional optimizations which could be made with regard to straights or flushes, however I found the dealer represents a reasonable challenge as currently constructed.
