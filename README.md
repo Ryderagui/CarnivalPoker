@@ -26,7 +26,7 @@ recursively building the next best possible hand with the cards remaining.
 
 First, there is a CardTracker fuction which sorts the dealers hand by suit and number:
 
-'''
+```
 
 
 updateCardTracker (cards = this.dealerCards, object = this.handTracker){
@@ -47,7 +47,7 @@ updateCardTracker (cards = this.dealerCards, object = this.handTracker){
         })
     }
 
-'''
+```
 
 
 As a result, the dealer will attempt to play 1-2 strong hands and a final weaker hand with what is left over. 
