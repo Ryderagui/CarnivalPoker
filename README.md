@@ -49,6 +49,24 @@ updateCardTracker (cards = this.dealerCards, object = this.handTracker){
 
 ```
 
+Now that the cards are sorted we can check for the best poker hands and store the cards needed to make those hands in an array:
+
+```javascript
+updateBestHand (object = this.handTracker){
+        this.updateCardTracker(object.cards, object);
+        if(object.cards.length <= 5 ){
+            object.result.push(object.cards)
+            return object
+        }
+        let flushCheck = [];
+        let straightCheck = [];
+        let fourKind = [];
+        let threeKind = [];
+        let twoKind = [];
+```
+Using sound logic I can use these arrays to find the best available poker hand, such as a three of a kind and a two of a kind for a Full house.
+The cards used for this hand are removed and we repeat the function recursively. If at any point we have less than 5 cards, there is no optimizaion to be done.
+Thankfully, this does not have to scale for very large n as there are only 52 cards in the deck. 
 
 As a result, the dealer will attempt to play 1-2 strong hands and a final weaker hand with what is left over. 
 
