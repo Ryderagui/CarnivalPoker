@@ -26,7 +26,7 @@ recursively building the next best possible hand with the cards remaining.
 
 First, there is a CardTracker fuction which sorts the dealers hand by suit and number:
 
-```
+```javascript
 
 
 updateCardTracker (cards = this.dealerCards, object = this.handTracker){
